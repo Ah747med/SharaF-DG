@@ -2304,6 +2304,8 @@ body:not(.edit-mode-active) .delete-item-btn {
    ======================================================== */
 .cloud-sync-badge,
 #cloud-sync-status-badge {
+#cloud-sync-status-badge,
+#firebase-cloud-btn {
     display: none !important;
 }
 
