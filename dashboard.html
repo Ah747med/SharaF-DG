@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharaf DG - Egypt Dashboard</title>
+  <link rel="icon" href="Images/images.png" type="image/png">
+  <!-- Google Fonts: Inter & Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f3f5f8;
+      color: #12344d;
+      font-size: 13px;
+      line-height: 1.4;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP HEADER BAR */
+    .top-navbar {
+      height: 48px;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8ee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .sharaf-logo-badge {
+      background: linear-gradient(135deg, #fdbb14, #f5a623);
+      border-radius: 6px;
+      width: 32px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .sharaf-logo-badge .sharaf-text {
+      font-size: 7.5px;
+      font-weight: 800;
+      color: #12284c;
+      letter-spacing: -0.2px;
+      line-height: 8px;
+    }
+
+    .sharaf-logo-badge .dg-text {
+      font-size: 10.5px;
+      font-weight: 900;
+      color: #0b3e8c;
+      line-height: 10px;
+    }
+
+    .dashboard-title-dropdown {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #12344d;
+      cursor: pointer;
+    }
+
+    .filter-funnel-icon {
+      color: #708291;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .new-btn-container {
+      position: relative;
+    }
+
+    .btn-new-ticket {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #12344d;
+      cursor: pointer;
+    }
+    .btn-new-ticket * {
+      pointer-events: none;
+    }
+
+    .btn-new-ticket:hover {
+      background: #f8fafc;
+    }
+
+        /* + New Menu Real Dropdown */
+    .new-menu-popup {
+      display: none;
+      position: absolute;
+      top: 36px;
+      left: 0;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      z-index: 1000;
+      min-width: 155px;
+      padding: 6px 0;
+    }
+
+    .new-menu-popup.show {
+      display: block;
+      animation: menuPopupFade 0.15s ease;
+    }
+
+    .new-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      font-size: 13px;
+      color: #12344d;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.12s, color 0.12s;
+    }
+
+    .new-menu-item:hover {
+      background-color: #f3f5f8;
+      color: #1871e8;
+    }
+
+    .new-menu-item .menu-item-icon {
+      color: #708291;
+      transition: color 0.12s;
+      flex-shrink: 0;
+    }
+
+    .new-menu-item:hover .menu-item-icon {
+      color: #1871e8;
+    }
+
+    @keyframes menuPopupFade {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .search-box-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      color: #708291;
+      cursor: pointer;
+      min-width: 90px;
+    }
+
+    .header-icon-btn {
+      background: transparent;
+      border: none;
+      color: #475867;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .badge-dot {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 6px;
+      height: 6px;
+      background: #e53935;
+      border-radius: 50%;
+    }
+
+    .apps-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px solid #cfd7df;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      color: #475867;
+      cursor: pointer;
+    }
+
+    .user-avatar-header {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #dbe4ea;
+      color: #475867;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* MAIN APP WORKSPACE */
+    .app-workspace {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      min-height: calc(100vh - 48px);
+    }
+
+    /* LEFT GLOBAL NAVIGATION SIDEBAR */
+    .global-left-sidebar {
+      width: 46px;
+      background: #ffffff;
+      border-right: 1px solid #e2e8ee;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      flex-shrink: 0;
+      z-index: 90;
+    }
+
+    .sidebar-nav-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .nav-icon-link {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      color: #50667a;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+
+    .nav-icon-link:hover {
+      background: #f0f4f7;
+      color: #12344d;
+    }
+
+    .nav-icon-link.active-dark {
+      background: #12344d;
+      color: #ffffff;
+    }
+
+    /* Freshworks Launcher 9 Dots */
+    .waffle-icon {
+      display: grid;
+      grid-template-columns: repeat(3, 4px);
+      grid-gap: 2.5px;
+      padding: 4px;
+    }
+    .waffle-dot { width: 4px; height: 4px; border-radius: 50%; }
+    .waffle-dot.c1 { background: #ea4335; }
+    .waffle-dot.c2 { background: #4285f4; }
+    .waffle-dot.c3 { background: #fbbc05; }
+    .waffle-dot.c4 { background: #34a853; }
+    .waffle-dot.c5 { background: #4285f4; }
+    .waffle-dot.c6 { background: #ea4335; }
+    .waffle-dot.c7 { background: #fbbc05; }
+    .waffle-dot.c8 { background: #34a853; }
+    .waffle-dot.c9 { background: #4285f4; }
+
+    /* DASHBOARD CONTENT CONTAINER */
+    .dashboard-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .dashboard-subheader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2px;
+    }
+
+    .visible-info {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      color: #50667a;
+    }
+
+    .btn-present {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      padding: 5px 14px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #12344d;
+      cursor: pointer;
+    }
+
+    /* KPI Cards Grid (Row 1) */
+    .kpi-row-grid-6 {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .kpi-card {
+      background: #ffffff;
+      border: 1px solid #e1e7ec;
+      border-radius: 6px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 86px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+      transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-color: #cbd5e1;
+    }
+
+    .kpi-card:hover .kpi-card-title {
+      color: #1871e8;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .kpi-card-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #12344d;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .kpi-card-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #12344d;
+      margin-top: 10px;
+    }
+
+    /* Charts & Visualizations (Row 2) */
+    .charts-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .chart-card {
+      background: #ffffff;
+      border: 1px solid #e1e7ec;
+      border-radius: 6px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .chart-card-header {
+      font-size: 13px;
+      font-weight: 600;
+      color: #12344d;
+      margin-bottom: 12px;
+    }
+
+    .empty-state-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .empty-doodle-svg {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 12px;
+    }
+
+    .empty-state-text {
+      font-size: 12px;
+      color: #708291;
+      max-width: 200px;
+      line-height: 1.4;
+    }
+
+    .bar-chart-body {
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bar-row-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bar-label {
+      font-size: 12.5px;
+      color: #12344d;
+      min-width: 35px;
+      white-space: nowrap;
+    }
+
+    .bar-track {
+      flex: 1;
+      height: 8px;
+      background: #f0f4f7;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .bar-fill-blue {
+      height: 100%;
+      background: #1871e8;
+      border-radius: 4px;
+    }
+
+    .bar-value {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #12344d;
+      min-width: 14px;
+      text-align: right;
+    }
+
+    /* Lower Section: Complex Grid */
+    .lower-dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 3fr 2fr;
+      gap: 14px;
+    }
+
+    .left-widgets-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mfr-cards-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .agent-unresolved-card {
+      background: #ffffff;
+      border: 1px solid #e1e7ec;
+      border-radius: 6px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+      flex: 1;
+    }
+
+    .agent-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .agent-name-label {
+      font-size: 12px;
+      color: #12344d;
+      width: 130px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Middle Column: Leaderboard */
+    .leaderboard-card {
+      background: #ffffff;
+      border: 1px solid #e1e7ec;
+      border-radius: 6px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+      min-height: 380px;
+    }
+
+    .leaderboard-header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .leaderboard-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .leaderboard-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #12344d;
+    }
+
+    .leaderboard-subtitle {
+      font-size: 11.5px;
+      color: #708291;
+    }
+
+    .view-all-link {
+      font-size: 12px;
+      color: #1871e8;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .leaderboard-center-doodle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 10px;
+    }
+
+    .shield-doodle-svg {
+      width: 76px;
+      height: 76px;
+      margin-bottom: 14px;
+    }
+
+    .leaderboard-footer-time {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      font-size: 11px;
+      color: #8fa0b0;
+    }
+
+    /* Right Column */
+    .right-widgets-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .small-cards-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .sdg-type-card {
+      background: #ffffff;
+      border: 1px solid #e1e7ec;
+      border-radius: 6px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+      flex: 1;
+    }
+
+    .sdg-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sdg-label {
+      font-size: 12px;
+      color: #12344d;
+      width: 120px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* FLOATING BUTTON & MODAL */
+
+    .freshdesk-float-widget {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #00b3a4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 179, 164, 0.35);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .widget-orange-dot {
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 11px;
+      height: 11px;
+      background: #fdbb14;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+  
+    /* NEW TICKET MODAL DIALOG */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 52, 77, 0.45);
+      backdrop-filter: blur(2px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: modalFadeIn 0.2s ease;
+    }
+
+    .new-ticket-modal {
+      background: #ffffff;
+      border-radius: 8px;
+      width: 660px;
+      max-width: 95vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+      animation: modalSlideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .new-ticket-modal-header {
+      padding: 16px 22px;
+      border-bottom: 1px solid #eef2f5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .new-ticket-modal-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #12344d;
+    }
+
+    .modal-close-icon {
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      color: #708291;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+      border-radius: 4px;
+    }
+
+    .modal-close-icon:hover {
+      color: #12344d;
+      background: #f0f4f7;
+    }
+
+    .new-ticket-modal-body {
+      padding: 20px 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      flex: 1;
+    }
+
+    .form-group-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group-field label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #33475b;
+    }
+
+    .form-group-field label span.req-star {
+      color: #e53935;
+      margin-left: 2px;
+    }
+
+    .form-control-input, .form-control-select, .form-control-textarea {
+      width: 100%;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #12344d;
+      background: #ffffff;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      box-sizing: border-box;
+    }
+
+    .form-control-input {
+      height: 36px;
+      padding: 0 12px;
+    }
+
+    .form-control-select {
+      height: 36px;
+      padding: 0 28px 0 12px;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23708291' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+
+    .form-control-textarea {
+      padding: 10px 12px;
+      min-height: 85px;
+      resize: vertical;
+    }
+
+    .form-control-input:focus, .form-control-select:focus, .form-control-textarea:focus {
+      border-color: #1871e8;
+      box-shadow: 0 0 0 2px rgba(24, 113, 232, 0.15);
+    }
+
+    .form-two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .attach-file-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: #1871e8;
+      cursor: pointer;
+      width: fit-content;
+      font-weight: 500;
+    }
+
+    .attach-file-row:hover {
+      text-decoration: underline;
+    }
+
+    .new-ticket-modal-footer {
+      padding: 14px 22px;
+      border-top: 1px solid #eef2f5;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      background: #f8fafc;
+      flex-shrink: 0;
+    }
+
+    .btn-modal-cancel {
+      background: transparent;
+      border: 1px solid #cfd7df;
+      color: #50667a;
+      padding: 7px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn-modal-cancel:hover {
+      background: #edf2f7;
+      color: #12344d;
+    }
+
+    .btn-modal-create {
+      background: #1871e8;
+      color: #ffffff;
+      border: none;
+      padding: 7px 22px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(24, 113, 232, 0.35);
+      transition: background 0.15s;
+    }
+
+    .btn-modal-create:hover {
+      background: #1258b5;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  
+    /* Freshdesk Toast Notification */
+    .freshdesk-toast {
+      position: fixed;
+      top: 54px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-25px);
+      background: #12344d;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      z-index: 99999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .freshdesk-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER BAR -->
+  <header class="top-navbar">
+    <div class="nav-left">
+      <!-- Sharaf DG Yellow Logo Badge -->
+      <div class="sharaf-logo-badge" title="العودة إلى قاعدة المعرفة (KB-Base)" onclick="window.location.href='index.html';" style="cursor: pointer;">
+        <span class="sharaf-text">Sharaf</span>
+        <span class="dg-text">DG</span>
+      </div>
+
+      <!-- Dashboard Title Selector -->
+      <div class="dashboard-title-dropdown">
+        <span class="filter-funnel-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+          </svg>
+        </span>
+        <span>Egypt Dashboard</span>
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1L5 5L9 1" stroke="#12344d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <!-- + New Button with Image Dropdown -->
+      <div class="new-btn-container">
+        <button class="btn-new-ticket" onclick="toggleNewMenu(event)" type="button">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1V11M1 6H11" stroke="#12344d" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span>New</span>
+          <svg width="8" height="5" viewBox="0 0 8 5" fill="none" style="margin-left: 2px;"><path d="M1 1L4 4L7 1" stroke="#475867" stroke-width="1.2"/></svg>
+        </button>
+
+                <!-- Real Freshdesk + New Dropdown Menu -->
+        <div class="new-menu-popup" id="newMenuPopup">
+          <a href="new-ticket.html" class="new-menu-item" onclick="window.location.href='new-ticket.html';">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M2 9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a3 3 0 0 0 0 6v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-2a3 3 0 0 0 0-6V9z"/>
+              <line x1="9" y1="9" x2="9" y2="9.01" stroke-width="2"/>
+              <line x1="9" y1="15" x2="9" y2="15.01" stroke-width="2"/>
+            </svg>
+            <span>Ticket</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Email')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <polyline points="22 6 12 13 2 6"></polyline>
+            </svg>
+            <span>Email</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Contact')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+              <circle cx="12" cy="10" r="3"></circle>
+              <path d="M7 18a5 5 0 0 1 10 0"></path>
+            </svg>
+            <span>Contact</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Company')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M3 21h18"></path>
+              <path d="M5 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+              <path d="M15 21V10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v11"></path>
+              <line x1="8" y1="7" x2="10" y2="7"></line>
+              <line x1="8" y1="11" x2="10" y2="11"></line>
+              <line x1="8" y1="15" x2="10" y2="15"></line>
+            </svg>
+            <span>Company</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="search-box-btn">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+          <circle cx="7" cy="7" r="5" stroke="#708291" stroke-width="1.5"/>
+          <path d="M11 11L14.5 14.5" stroke="#708291" stroke-width="1.5"/>
+        </svg>
+        <span>Search</span>
+      </div>
+
+      <button class="header-icon-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+        <span class="badge-dot"></span>
+      </button>
+
+      <button class="header-icon-btn" title="Help & Support">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </button>
+
+      <button class="header-icon-btn" title="Announcements">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
+
+      <button class="apps-btn" title="Apps">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>Apps</span>
+      </button>
+
+      <div class="user-avatar-header" title="Agent Profile">Y</div>
+    </div>
+  </header>
+
+  <!-- MAIN APP WORKSPACE CONTAINER -->
+  <div class="app-workspace">
+
+    <!-- LEFT GLOBAL NAVIGATION BAR -->
+    <aside class="global-left-sidebar">
+      <div class="sidebar-nav-group">
+        <!-- Dashboard Speedometer (Active / Selected) -->
+        <a href="dashboard.html" class="nav-icon-link active-dark" title="Dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v4M4.93 4.93l2.83 2.83M2 12h4M4.93 19.07l2.83-2.83M12 22v-4M19.07 19.07l-2.83-2.83M22 12h-4M19.07 4.93l-2.83 2.83"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </a>
+
+        <!-- Tickets -->
+        <a href="tickets.html" class="nav-icon-link" title="All unresolved tickets">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M2 9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a3 3 0 0 0 0 6v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-2a3 3 0 0 0 0-6V9z"/>
+            <line x1="9" y1="9" x2="9" y2="9.01" stroke-width="2"/>
+            <line x1="9" y1="15" x2="9" y2="15.01" stroke-width="2"/>
+          </svg>
+        </a>
+
+        <div class="nav-icon-link" title="Contacts">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+
+        <div class="nav-icon-link" title="Companies">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+        </div>
+
+        <div class="nav-icon-link" title="Reports">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </div>
+
+        <div class="nav-icon-link" title="Automations">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Bottom System Icons -->
+      <div class="sidebar-nav-group">
+        <div class="nav-icon-link" title="Freshworks Switcher">
+          <div class="waffle-icon">
+            <div class="waffle-dot c1"></div>
+            <div class="waffle-dot c2"></div>
+            <div class="waffle-dot c3"></div>
+            <div class="waffle-dot c4"></div>
+            <div class="waffle-dot c5"></div>
+            <div class="waffle-dot c6"></div>
+            <div class="waffle-dot c7"></div>
+            <div class="waffle-dot c8"></div>
+            <div class="waffle-dot c9"></div>
+          </div>
+        </div>
+
+        <div class="nav-icon-link" title="Chat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+
+        <div class="nav-icon-link" title="Toggle Sidebar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+            <path d="M14 9l-3 3 3 3"></path>
+          </svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD CONTENT AREA -->
+    <main class="dashboard-container">
+
+      <!-- SUBHEADER: VISIBLE TO & PRESENT -->
+      <div class="dashboard-subheader">
+        <div class="visible-info">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          <span>Visible to: <strong>All agents</strong></span>
+        </div>
+
+        <button class="btn-present">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
+          </svg>
+          <span>Present</span>
+        </button>
+      </div>
+
+      <!-- ROW 1: TOP 6 KPI COUNTER CARDS -->
+      <div class="kpi-row-grid-6">
+        <a href="tickets.html" class="kpi-card" title="View all unresolved tickets">
+          <span class="kpi-card-title">Unresolved</span>
+          <span class="kpi-card-value">13</span>
+        </a>
+
+        <a href="tickets.html" class="kpi-card" title="View tickets">
+          <span class="kpi-card-title">Overdue</span>
+          <span class="kpi-card-value">0</span>
+        </a>
+
+        <a href="tickets.html" class="kpi-card" title="View tickets">
+          <span class="kpi-card-title">Due Today</span>
+          <span class="kpi-card-value">0</span>
+        </a>
+
+        <a href="tickets.html" class="kpi-card" title="View tickets">
+          <span class="kpi-card-title">Due Tomorrow</span>
+          <span class="kpi-card-value">2</span>
+        </a>
+
+        <a href="tickets.html" class="kpi-card" title="View tickets">
+          <span class="kpi-card-title">Carry In Pending &gt;14days</span>
+          <span class="kpi-card-value">0</span>
+        </a>
+
+        <a href="tickets.html" class="kpi-card" title="View tickets">
+          <span class="kpi-card-title">Unassigned</span>
+          <span class="kpi-card-value">1</span>
+        </a>
+      </div>
+
+      <!-- ROW 2: GROUP CHARTS (3 COLUMNS) -->
+      <div class="charts-row-3">
+        <!-- Group Overdue -->
+        <div class="chart-card">
+          <div class="chart-card-header">Group Overdue</div>
+          <div class="empty-state-body">
+            <svg class="empty-doodle-svg" viewBox="0 0 100 100" fill="none">
+              <path d="M15 65 C 20 20, 60 15, 80 40 C 90 55, 75 80, 50 78 C 30 75, 20 50, 45 42" stroke="#8fa0b0" stroke-width="1.2" stroke-dasharray="2 3" stroke-linecap="round"/>
+              <rect x="36" y="42" width="7" height="24" rx="1.5" stroke="#33475b" stroke-width="1.8" fill="#ffffff"/>
+              <rect x="47" y="32" width="7" height="34" rx="1.5" stroke="#33475b" stroke-width="1.8" fill="#ffffff"/>
+              <rect x="58" y="50" width="7" height="16" rx="1.5" stroke="#33475b" stroke-width="1.8" fill="#ffffff"/>
+              <circle cx="22" cy="35" r="1" fill="#708291"/>
+              <circle cx="78" cy="28" r="1.2" fill="#708291"/>
+              <circle cx="68" cy="72" r="1" fill="#708291"/>
+            </svg>
+            <p class="empty-state-text">When there's data to analyze, there'll be bars to visualize</p>
+          </div>
+        </div>
+
+        <!-- Group Due Today -->
+        <div class="chart-card">
+          <div class="chart-card-header">Group Due Today</div>
+          <div class="empty-state-body">
+            <svg class="empty-doodle-svg" viewBox="0 0 100 100" fill="none">
+              <path d="M15 65 C 20 20, 60 15, 80 40 C 90 55, 75 80, 50 78 C 30 75, 20 50, 45 42" stroke="#8fa0b0" stroke-width="1.2" stroke-dasharray="2 3" stroke-linecap="round"/>
+              <rect x="36" y="42" width="7" height="24" rx="1.5" stroke="#33475b" stroke-width="1.8" fill="#ffffff"/>
+              <rect x="47" y="32" width="7" height="34" rx="1.5" stroke="#33475b" stroke-width="1.8" fill="#ffffff"/>
+              <rect x="58" y="50" width="7" height="16" rx="1.5" stroke="#33475b" stroke-width="1.8" fill="#ffffff"/>
+              <circle cx="22" cy="35" r="1" fill="#708291"/>
+              <circle cx="78" cy="28" r="1.2" fill="#708291"/>
+              <circle cx="68" cy="72" r="1" fill="#708291"/>
+            </svg>
+            <p class="empty-state-text">When there's data to analyze, there'll be bars to visualize</p>
+          </div>
+        </div>
+
+        <!-- Group Due Tomorrow -->
+        <div class="chart-card">
+          <div class="chart-card-header">Group Due Tomorrow</div>
+          <div class="bar-chart-body">
+            <div class="bar-row-item">
+              <span class="bar-label">AMC</span>
+              <div class="bar-track">
+                <div class="bar-fill-blue" style="width: 88%;"></div>
+              </div>
+              <span class="bar-value">2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOWER DASHBOARD COMPLEX SECTION -->
+      <div class="lower-dashboard-grid">
+
+        <!-- LEFT COLUMN: MFR CARDS + AGENT UNRESOLVED -->
+        <div class="left-widgets-col">
+          <div class="mfr-cards-row">
+            <a href="tickets.html" class="kpi-card" title="View tickets">
+          <span class="kpi-card-title">Overdue Manufacturer's</span>
+              <span class="kpi-card-value">0</span>
+        </a>
+
+            <a href="tickets.html" class="kpi-card" title="View tickets">
+          <span class="kpi-card-title">Due Manufacturer's</span>
+              <span class="kpi-card-value">0</span>
+        </a>
+          </div>
+
+          <div class="agent-unresolved-card">
+            <div class="chart-card-header" style="margin-bottom: 4px;">Agent Unresolved</div>
+
+            <!-- Bar 1: Ahmed Mahmoud (6) -->
+            <div class="agent-bar-row">
+              <span class="agent-name-label" title="Ahmed Mahmoud">Ahmed Mahmoud</span>
+              <div class="bar-track">
+                <div class="bar-fill-blue" style="width: 80%;"></div>
+              </div>
+              <span class="bar-value">6</span>
+            </div>
+
+            <!-- Bar 2: Amr Mohamed Ashraf (2) -->
+            <div class="agent-bar-row">
+              <span class="agent-name-label" title="Amr Mohamed Ashraf ...">Amr Mohamed Ashraf ...</span>
+              <div class="bar-track">
+                <div class="bar-fill-blue" style="width: 28%;"></div>
+              </div>
+              <span class="bar-value">2</span>
+            </div>
+
+            <!-- Bar 3: Ahmed Arif (2) -->
+            <div class="agent-bar-row">
+              <span class="agent-name-label" title="Ahmed Arif">Ahmed Arif</span>
+              <div class="bar-track">
+                <div class="bar-fill-blue" style="width: 28%;"></div>
+              </div>
+              <span class="bar-value">2</span>
+            </div>
+
+            <!-- Bar 4: Mahmoud Aziz Shoaib Ibrahim (1) -->
+            <div class="agent-bar-row">
+              <span class="agent-name-label" title="Mahmoud Aziz Shoaib Ibrahim">Mahmoud Aziz Shoaib Ibrahim</span>
+              <div class="bar-track">
+                <div class="bar-fill-blue" style="width: 14%;"></div>
+              </div>
+              <span class="bar-value">1</span>
+            </div>
+
+            <!-- Bar 5: Mohamed Saed (1) -->
+            <div class="agent-bar-row">
+              <span class="agent-name-label" title="Mohamed Saed">Mohamed Saed</span>
+              <div class="bar-track">
+                <div class="bar-fill-blue" style="width: 14%;"></div>
+              </div>
+              <span class="bar-value">1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MIDDLE COLUMN: LEADERBOARD -->
+        <div class="leaderboard-card">
+          <div class="leaderboard-header-row">
+            <div class="leaderboard-titles">
+              <span class="leaderboard-title">Leaderboard</span>
+              <span class="leaderboard-subtitle">Across helpdesk this month</span>
+            </div>
+            <a href="#" class="view-all-link">View all</a>
+          </div>
+
+          <div class="leaderboard-center-doodle">
+            <svg class="shield-doodle-svg" viewBox="0 0 100 100" fill="none">
+              <path d="M22 68 C 18 30, 52 16, 75 28 C 88 35, 84 62, 70 78 C 55 90, 32 82, 38 60" stroke="#8fa0b0" stroke-width="1.2" stroke-dasharray="2 3" stroke-linecap="round"/>
+              <path d="M40 38 L50 34 L60 38 C 61 50, 57 62, 50 66 C 43 62, 39 50, 40 38 Z" stroke="#33475b" stroke-width="1.8" fill="#ffffff" stroke-linejoin="round"/>
+              <circle cx="46" cy="46" r="1.2" fill="#33475b"/>
+              <circle cx="54" cy="46" r="1.2" fill="#33475b"/>
+              <path d="M47 52 L53 52" stroke="#33475b" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M78 48 L80 48 M79 47 L79 49" stroke="#708291" stroke-width="1.2"/>
+              <path d="M26 42 L28 42 M27 41 L27 43" stroke="#708291" stroke-width="1.2"/>
+            </svg>
+            <p class="empty-state-text">When you have trend setters, you'll see them here</p>
+          </div>
+
+          <div class="leaderboard-footer-time">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 4v6h-6"></path>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+            </svg>
+            <span>05:07</span>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: WAITING + COMPLAINT + EXCEPTION + SDG TYPE -->
+        <div class="right-widgets-col">
+          <div class="small-cards-row">
+            <a href="tickets.html" class="kpi-card" title="View tickets">
+          <span class="kpi-card-title">Waiting For Customer</span>
+              <span class="kpi-card-value">0</span>
+        </a>
+
+            <a href="tickets.html" class="kpi-card" title="View tickets">
+          <span class="kpi-card-title">Pending Complaint</span>
+              <span class="kpi-card-value">0</span>
+        </a>
+          </div>
+
+          <div class="kpi-card" style="min-height: 80px;">
+            <span class="kpi-card-title">Exception</span>
+            <span class="kpi-card-value">0</span>
+          </div>
+
+          <div class="sdg-type-card">
+            <div class="chart-card-header" style="margin-bottom: 4px;">Overdue DueToday Tomorrow Type</div>
+            <div class="sdg-bar-row">
+              <span class="sdg-label" title="SDG Invoice copy requ...">SDG Invoice copy requ...</span>
+              <div class="bar-track">
+                <div class="bar-fill-blue" style="width: 82%;"></div>
+              </div>
+              <span class="bar-value">2</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- FRESHDESK MINT FLOATING ACTION BUTTON WITH ORANGE BADGE -->
+  <div class="freshdesk-float-widget" title="Freshworks Support Assistant">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="12" cy="12" r="3.5" fill="#ffffff"/>
+      <path d="M12 5V8.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M17 12H20.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    <div class="widget-orange-dot"></div>
+  </div>
+
+  <script>
+    function toggleNewMenu(e) {
+      if (e) {
+        e.stopPropagation();
+      }
+      const popup = document.getElementById('newMenuPopup');
+      if (popup) {
+        popup.classList.toggle('show');
+      }
+    }
+    window.toggleNewMenu = toggleNewMenu;
+
+    document.addEventListener('click', function(e) {
+      const popup = document.getElementById('newMenuPopup');
+      if (popup && popup.classList.contains('show')) {
+        if (!e.target.closest('.new-btn-container')) {
+          popup.classList.remove('show');
+        }
+      }
+    });
+
+    function createNewItem(type) {
+      const popup = document.getElementById('newMenuPopup');
+      if (popup) popup.classList.remove('show');
+      const toast = document.getElementById('toastSuccess');
+      if (toast) {
+        const toastSpan = toast.querySelector('span');
+        const oldMsg = toastSpan ? toastSpan.innerText : '';
+        if (toastSpan) toastSpan.innerText = `New ${type} creation dialog`;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+          if (toastSpan) toastSpan.innerText = oldMsg;
+        }, 2200);
+      }
+    }
+  
+    // Open & Close New Ticket Modal
+    function openNewTicketModal() {
+      window.location.href = 'new-ticket.html';
+    }
+
+    function closeNewTicketModal() {
+      const overlay = document.getElementById('newTicketModalOverlay');
+      if (overlay) overlay.classList.remove('open');
+      const form = document.getElementById('newTicketForm');
+      if (form) form.reset();
+      const fn = document.getElementById('attachedFileName');
+      if (fn) fn.innerText = 'Attach a file (Max 20MB)';
+    }
+
+    // Handle New Ticket Submission
+    function handleCreateTicket(e) {
+      e.preventDefault();
+      const requester = document.getElementById('modalTicketRequester').value.trim();
+      const subject = document.getElementById('modalTicketSubject').value.trim();
+      const priority = document.getElementById('modalTicketPriority').value;
+      const group = document.getElementById('modalTicketGroup').value;
+      const agent = document.getElementById('modalTicketAgent').value;
+
+      if (!requester || !subject) return;
+
+      const newTicketNumber = Math.floor(953215 + Math.random() * 50);
+
+      // If we are on tickets.html, dynamically prepend row
+      const ticketsContainer = document.querySelector('.tickets-cards-list, .ticket-cards-column');
+      if (ticketsContainer) {
+        const card = document.createElement('div');
+        card.className = 'ticket-card-row';
+        card.style.animation = 'fadeInMsg 0.3s ease';
+        card.innerHTML = `
+          <div class="card-left-select">
+            <input type="checkbox" class="ticket-checkbox">
+          </div>
+          <div class="card-avatar-circle user-avatar-sm-purple">${requester.charAt(0).toUpperCase()}</div>
+          <div class="card-info-col">
+            <div class="card-header-line">
+              <span class="badge-new-green">New</span>
+              <a href="ticket-ziwo.html" class="ticket-card-title">${subject} #${newTicketNumber}</a>
+            </div>
+            <div class="ticket-meta-subtitle">
+              <span>👤 ${requester}</span>
+              <span>• Created just now</span>
+              <span>• First response due in 24 hours</span>
+            </div>
+          </div>
+          <div class="card-properties-col">
+            <div class="card-prop-priority"><span class="priority-dot dot-low"></span> ${priority}</div>
+            <div class="card-prop-assignee">${group} / ${agent}</div>
+            <div class="card-prop-status">Open</div>
+          </div>
+        `;
+        ticketsContainer.insertBefore(card, ticketsContainer.firstChild);
+
+        // Update counter if present
+        const counter = document.querySelector('.tickets-count-badge');
+        if (counter) {
+          const cur = parseInt(counter.innerText) || 12;
+          counter.innerText = cur + 1;
+        }
+      }
+
+      closeNewTicketModal();
+
+      // Show Freshdesk Success Toast
+      const toast = document.getElementById('toastSuccess');
+      if (toast) {
+        const toastSpan = toast.querySelector('span');
+        const oldMsg = toastSpan ? toastSpan.innerText : '';
+        if (toastSpan) toastSpan.innerText = `Ticket #${newTicketNumber} created successfully.`;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+          if (toastSpan) toastSpan.innerText = oldMsg;
+        }, 3000);
+      }
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeNewTicketModal();
+      }
+    });
+
+  </script>
+
+  <!-- FRESHDESK NEW TICKET MODAL -->
+  <div class="modal-overlay" id="newTicketModalOverlay" onclick="if(event.target===this) closeNewTicketModal()">
+    <div class="new-ticket-modal">
+      <div class="new-ticket-modal-header">
+        <span class="new-ticket-modal-title">New ticket</span>
+        <button class="modal-close-icon" onclick="closeNewTicketModal()" title="Close">✕</button>
+      </div>
+      <form id="newTicketForm" onsubmit="handleCreateTicket(event)">
+        <div class="new-ticket-modal-body">
+          <!-- Requester -->
+          <div class="form-group-field">
+            <label>Contact / Requester <span class="req-star">*</span></label>
+            <input type="text" id="modalTicketRequester" class="form-control-input" placeholder="Search a contact or enter name / email / phone..." required>
+          </div>
+
+          <!-- Subject -->
+          <div class="form-group-field">
+            <label>Subject <span class="req-star">*</span></label>
+            <input type="text" id="modalTicketSubject" class="form-control-input" placeholder="Enter ticket subject..." required>
+          </div>
+
+          <!-- Type & Source -->
+          <div class="form-two-cols">
+            <div class="form-group-field">
+              <label>Type</label>
+              <select id="modalTicketType" class="form-control-select">
+                <option selected>Inbound call</option>
+                <option>Inbound Chat</option>
+                <option>Outbound Call</option>
+                <option>Carry-In Repair</option>
+                <option>Complaint</option>
+                <option>Sales</option>
+                <option>Store Deliveries</option>
+                <option>SDG Invoice copy request</option>
+                <option>Others</option>
+              </select>
+            </div>
+            <div class="form-group-field">
+              <label>Source</label>
+              <select id="modalTicketSource" class="form-control-select">
+                <option selected>Phone</option>
+                <option>Email</option>
+                <option>Chat</option>
+                <option>WhatsApp</option>
+                <option>Portal</option>
+                <option>Store Walk-in</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Status & Priority -->
+          <div class="form-two-cols">
+            <div class="form-group-field">
+              <label>Status</label>
+              <select id="modalTicketStatus" class="form-control-select">
+                <option selected>Open</option>
+                <option>Pending</option>
+                <option>Resolved</option>
+                <option>Closed</option>
+              </select>
+            </div>
+            <div class="form-group-field">
+              <label>Priority</label>
+              <select id="modalTicketPriority" class="form-control-select">
+                <option selected>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Urgent</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Group & Agent -->
+          <div class="form-two-cols">
+            <div class="form-group-field">
+              <label>Group</label>
+              <select id="modalTicketGroup" class="form-control-select">
+                <option selected>Finance</option>
+                <option>Customer Support</option>
+                <option>Sales</option>
+                <option>Operations</option>
+                <option>EG1 / AMC</option>
+              </select>
+            </div>
+            <div class="form-group-field">
+              <label>Agent</label>
+              <select id="modalTicketAgent" class="form-control-select">
+                <option selected>Ahmed Arif</option>
+                <option>Omniya Abd Rabo Ibrahim</option>
+                <option>Zamzam Walid Abdelraouf</option>
+                <option>Unassigned</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group-field">
+            <label>Description</label>
+            <textarea id="modalTicketDesc" class="form-control-textarea" placeholder="Describe the issue or customer request in detail..."></textarea>
+          </div>
+
+          <!-- Attach File -->
+          <label class="attach-file-row">
+            <input type="file" style="display: none;" onchange="if(this.files[0]) document.getElementById('attachedFileName').innerText = this.files[0].name;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+            </svg>
+            <span id="attachedFileName">Attach a file (Max 20MB)</span>
+          </label>
+        </div>
+
+        <div class="new-ticket-modal-footer">
+          <button type="button" class="btn-modal-cancel" onclick="closeNewTicketModal()">Cancel</button>
+          <button type="submit" class="btn-modal-create">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- FRESHDESK PROPERTIES/ACTION UPDATED TOAST -->
+  <div id="toastSuccess" class="freshdesk-toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span>Action completed successfully.</span>
+  </div>
+
+</body>
+</html>

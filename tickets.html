@@ -1,0 +1,1994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharaf DG - All unresolved tickets</title>
+  <link rel="icon" href="Images/images.png" type="image/png">
+  <!-- Google Fonts: Inter & Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f3f5f8;
+      color: #12344d;
+      font-size: 13px;
+      line-height: 1.4;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP HEADER BAR */
+    .top-navbar {
+      height: 48px;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8ee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      flex-shrink: 0;
+      z-index: 100;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Sharaf DG Logo */
+    .sharaf-logo-badge {
+      background: linear-gradient(135deg, #fdbb14, #f5a623);
+      border-radius: 6px;
+      width: 32px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .sharaf-logo-badge .sharaf-text {
+      font-size: 7.5px;
+      font-weight: 800;
+      color: #12284c;
+      letter-spacing: -0.2px;
+      line-height: 8px;
+    }
+
+    .sharaf-logo-badge .dg-text {
+      font-size: 10.5px;
+      font-weight: 900;
+      color: #0b3e8c;
+      line-height: 10px;
+    }
+
+    .ticket-view-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-funnel-icon {
+      color: #708291;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticket-view-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #12344d;
+      cursor: pointer;
+    }
+
+    .star-icon-btn {
+      color: #8fa0b0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .star-icon-btn:hover {
+      color: #f5a623;
+    }
+
+    .ticket-count-pill {
+      background: #12344d;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+
+    /* Header Right Actions */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-new-ticket {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #12344d;
+      cursor: pointer;
+    }
+    .btn-new-ticket * {
+      pointer-events: none;
+    }
+
+    .btn-new-ticket:hover {
+      background: #f8fafc;
+    }
+
+    .search-box-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      color: #708291;
+      cursor: pointer;
+      min-width: 90px;
+    }
+
+    .header-icon-btn {
+      background: transparent;
+      border: none;
+      color: #475867;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .badge-dot {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 6px;
+      height: 6px;
+      background: #e53935;
+      border-radius: 50%;
+    }
+
+    .apps-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px solid #cfd7df;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      color: #475867;
+      cursor: pointer;
+    }
+
+    .user-avatar-header {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #dbe4ea;
+      color: #475867;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* MAIN APP WORKSPACE */
+    .app-workspace {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      height: calc(100vh - 48px);
+    }
+
+    /* LEFT GLOBAL NAVIGATION SIDEBAR */
+    .global-left-sidebar {
+      width: 46px;
+      background: #ffffff;
+      border-right: 1px solid #e2e8ee;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      flex-shrink: 0;
+      z-index: 90;
+    }
+
+    .sidebar-nav-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .nav-icon-link {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      color: #50667a;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+
+    .nav-icon-link:hover {
+      background: #f0f4f7;
+      color: #12344d;
+    }
+
+    .nav-icon-link.active-dark {
+      background: #12344d;
+      color: #ffffff;
+    }
+
+    /* Freshworks Launcher 9 Dots */
+    .waffle-icon {
+      display: grid;
+      grid-template-columns: repeat(3, 4px);
+      grid-gap: 2.5px;
+      padding: 4px;
+    }
+    .waffle-dot { width: 4px; height: 4px; border-radius: 50%; }
+    .waffle-dot.c1 { background: #ea4335; }
+    .waffle-dot.c2 { background: #4285f4; }
+    .waffle-dot.c3 { background: #fbbc05; }
+    .waffle-dot.c4 { background: #34a853; }
+    .waffle-dot.c5 { background: #4285f4; }
+    .waffle-dot.c6 { background: #ea4335; }
+    .waffle-dot.c7 { background: #fbbc05; }
+    .waffle-dot.c8 { background: #34a853; }
+    .waffle-dot.c9 { background: #4285f4; }
+
+    /* TICKETS VIEW LAYOUT */
+    .tickets-view-container {
+      display: flex;
+      flex: 1;
+      height: 100%;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    /* LEFT TICKETS LIST AREA */
+    .tickets-list-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-right: 1px solid #e2e8ee;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    /* Subheader Filter Bar */
+    .tickets-subtoolbar {
+      height: 42px;
+      border-bottom: 1px solid #eef2f5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .toolbar-left-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .custom-checkbox {
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid #adb5bd;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .sort-by-text {
+      font-size: 12.5px;
+      color: #50667a;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    /* 1 Update Floating Pill */
+    .floating-update-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      padding: 4px 14px;
+      border-radius: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      color: #12344d;
+    }
+
+    .refresh-blue-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1871e8;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toolbar-right-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12.5px;
+      color: #50667a;
+    }
+
+    .btn-toolbar-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      color: #50667a;
+      text-decoration: none;
+    }
+
+    .btn-toolbar-link:hover {
+      color: #1871e8;
+    }
+
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .page-nav-arrow {
+      color: #8fa0b0;
+      cursor: pointer;
+      padding: 2px 4px;
+    }
+
+    .page-nav-arrow:hover {
+      color: #12344d;
+    }
+
+    /* TICKETS TABLE / LIST ROWS */
+    .tickets-list-items {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ticket-row-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid #f0f4f7;
+      transition: background 0.12s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .ticket-row-item:hover {
+      background: #fbfcfd;
+    }
+
+    .ticket-row-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .ticket-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .avatar-purple { background: #ede7f6; color: #5e35b1; }
+    .avatar-blue { background: #e3f2fd; color: #1e88e5; }
+    .avatar-pink { background: #fce4ec; color: #d81b60; }
+    .avatar-orange { background: #fff3e0; color: #f57c00; }
+
+    .ticket-main-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ticket-title-badges-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge-new {
+      background: #e3f6ea;
+      color: #0f7b3e;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 1px 8px;
+      border-radius: 10px;
+    }
+
+    .badge-arabic {
+      border: 1px solid #cfd7df;
+      color: #50667a;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 1px 7px;
+      border-radius: 10px;
+    }
+
+    .ticket-subject-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #12344d;
+    }
+
+    .ticket-meta-subtitle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      color: #708291;
+      flex-wrap: wrap;
+    }
+
+    .channel-handset-icon {
+      color: #708291;
+      display: flex;
+      align-items: center;
+    }
+
+    .arabic-meta-text {
+      font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+      direction: rtl;
+      unicode-bidi: embed;
+    }
+
+    /* Ticket Right Properties Columns */
+    .ticket-row-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+
+    .prop-status-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 140px;
+    }
+
+    .prop-priority-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #50667a;
+    }
+
+    .priority-square-green {
+      width: 7px;
+      height: 7px;
+      background: #8bc34a;
+      border-radius: 1.5px;
+    }
+
+    .prop-assignee-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #50667a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 160px;
+    }
+
+    .prop-state-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #50667a;
+    }
+
+    /* RIGHT FILTERS SIDEBAR */
+    .tickets-filters-column {
+      width: 260px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      height: 100%;
+      position: relative;
+    }
+
+    .filters-header-row {
+      padding: 14px 18px 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f0f4f7;
+    }
+
+    .filters-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #475867;
+      letter-spacing: 0.6px;
+    }
+
+    .show-applied-link {
+      font-size: 11.5px;
+      color: #1871e8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .show-applied-link:hover {
+      text-decoration: underline;
+    }
+
+    .filters-body-scroll {
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .search-fields-input-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-fields-input {
+      width: 100%;
+      height: 32px;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      padding: 0 10px 0 28px;
+      font-size: 12px;
+      color: #12344d;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .search-fields-input::placeholder {
+      color: #8fa0b0;
+    }
+
+    .search-fields-icon {
+      position: absolute;
+      left: 8px;
+      color: #8fa0b0;
+      pointer-events: none;
+    }
+
+    .filter-item-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .filter-item-label {
+      font-size: 12px;
+      color: #50667a;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .filter-select-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .filter-select {
+      width: 100%;
+      height: 32px;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      padding: 0 26px 0 10px;
+      font-size: 12.5px;
+      color: #708291;
+      background: #ffffff;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .select-chevron {
+      position: absolute;
+      right: 9px;
+      pointer-events: none;
+      color: #708291;
+    }
+
+    .filters-footer {
+      padding: 12px 18px;
+      border-top: 1px solid #f0f4f7;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .btn-apply-filters {
+      width: 100%;
+      height: 34px;
+      background: #84a8f3;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    .btn-apply-filters:hover {
+      background: #6a93ea;
+    }
+
+    /* FRESHDESK MINT FLOATING ACTION BUTTON WITH ORANGE BADGE */
+    .freshdesk-float-widget {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #00b3a4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 179, 164, 0.35);
+      cursor: pointer;
+      z-index: 1000;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .freshdesk-float-widget:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(0, 179, 164, 0.45);
+    }
+
+    .widget-orange-dot {
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 11px;
+      height: 11px;
+      background: #fdbb14;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    /* + New Menu Dropdown */
+    .new-btn-container {
+      position: relative;
+    }
+
+        /* + New Menu Real Dropdown */
+    .new-menu-popup {
+      display: none;
+      position: absolute;
+      top: 36px;
+      left: 0;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      z-index: 1000;
+      min-width: 155px;
+      padding: 6px 0;
+    }
+
+    .new-menu-popup.show {
+      display: block;
+      animation: menuPopupFade 0.15s ease;
+    }
+
+    .new-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      font-size: 13px;
+      color: #12344d;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.12s, color 0.12s;
+    }
+
+    .new-menu-item:hover {
+      background-color: #f3f5f8;
+      color: #1871e8;
+    }
+
+    .new-menu-item .menu-item-icon {
+      color: #708291;
+      transition: color 0.12s;
+      flex-shrink: 0;
+    }
+
+    .new-menu-item:hover .menu-item-icon {
+      color: #1871e8;
+    }
+
+    @keyframes menuPopupFade {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* NEW TICKET MODAL DIALOG */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 52, 77, 0.45);
+      backdrop-filter: blur(2px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: modalFadeIn 0.2s ease;
+    }
+
+    .new-ticket-modal {
+      background: #ffffff;
+      border-radius: 8px;
+      width: 660px;
+      max-width: 95vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+      animation: modalSlideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .new-ticket-modal-header {
+      padding: 16px 22px;
+      border-bottom: 1px solid #eef2f5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .new-ticket-modal-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #12344d;
+    }
+
+    .modal-close-icon {
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      color: #708291;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+      border-radius: 4px;
+    }
+
+    .modal-close-icon:hover {
+      color: #12344d;
+      background: #f0f4f7;
+    }
+
+    .new-ticket-modal-body {
+      padding: 20px 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      flex: 1;
+    }
+
+    .form-group-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group-field label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #33475b;
+    }
+
+    .form-group-field label span.req-star {
+      color: #e53935;
+      margin-left: 2px;
+    }
+
+    .form-control-input, .form-control-select, .form-control-textarea {
+      width: 100%;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #12344d;
+      background: #ffffff;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      box-sizing: border-box;
+    }
+
+    .form-control-input {
+      height: 36px;
+      padding: 0 12px;
+    }
+
+    .form-control-select {
+      height: 36px;
+      padding: 0 28px 0 12px;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23708291' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+
+    .form-control-textarea {
+      padding: 10px 12px;
+      min-height: 85px;
+      resize: vertical;
+    }
+
+    .form-control-input:focus, .form-control-select:focus, .form-control-textarea:focus {
+      border-color: #1871e8;
+      box-shadow: 0 0 0 2px rgba(24, 113, 232, 0.15);
+    }
+
+    .form-two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .attach-file-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: #1871e8;
+      cursor: pointer;
+      width: fit-content;
+      font-weight: 500;
+    }
+
+    .attach-file-row:hover {
+      text-decoration: underline;
+    }
+
+    .new-ticket-modal-footer {
+      padding: 14px 22px;
+      border-top: 1px solid #eef2f5;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      background: #f8fafc;
+      flex-shrink: 0;
+    }
+
+    .btn-modal-cancel {
+      background: transparent;
+      border: 1px solid #cfd7df;
+      color: #50667a;
+      padding: 7px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn-modal-cancel:hover {
+      background: #edf2f7;
+      color: #12344d;
+    }
+
+    .btn-modal-create {
+      background: #1871e8;
+      color: #ffffff;
+      border: none;
+      padding: 7px 22px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(24, 113, 232, 0.35);
+      transition: background 0.15s;
+    }
+
+    .btn-modal-create:hover {
+      background: #1258b5;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  
+    /* Freshdesk Toast Notification */
+    .freshdesk-toast {
+      position: fixed;
+      top: 54px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-25px);
+      background: #12344d;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      z-index: 99999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .freshdesk-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER BAR -->
+  <header class="top-navbar">
+    <div class="nav-left">
+      <!-- Sharaf DG Yellow Logo Badge -->
+      <div class="sharaf-logo-badge" title="Sharaf DG">
+        <span class="sharaf-text">Sharaf</span>
+        <span class="dg-text">DG</span>
+      </div>
+
+      <!-- Ticket View Title Group -->
+      <div class="ticket-view-title-group">
+        <span class="filter-funnel-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+          </svg>
+        </span>
+        <span class="ticket-view-title">All unresolved tickets</span>
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1L5 5L9 1" stroke="#12344d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="star-icon-btn" title="Favorite">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </span>
+        <span class="ticket-count-pill">12</span>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <!-- + New Button with Image Dropdown -->
+      <div class="new-btn-container">
+        <button class="btn-new-ticket" onclick="toggleNewMenu(event)" type="button">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1V11M1 6H11" stroke="#12344d" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span>New</span>
+          <svg width="8" height="5" viewBox="0 0 8 5" fill="none" style="margin-left: 2px;">
+            <path d="M1 1L4 4L7 1" stroke="#475867" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+                <!-- Real Freshdesk + New Dropdown Menu -->
+        <div class="new-menu-popup" id="newMenuPopup">
+          <a href="new-ticket.html" class="new-menu-item" onclick="window.location.href='new-ticket.html';">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M2 9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a3 3 0 0 0 0 6v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-2a3 3 0 0 0 0-6V9z"/>
+              <line x1="9" y1="9" x2="9" y2="9.01" stroke-width="2"/>
+              <line x1="9" y1="15" x2="9" y2="15.01" stroke-width="2"/>
+            </svg>
+            <span>Ticket</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Email')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <polyline points="22 6 12 13 2 6"></polyline>
+            </svg>
+            <span>Email</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Contact')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+              <circle cx="12" cy="10" r="3"></circle>
+              <path d="M7 18a5 5 0 0 1 10 0"></path>
+            </svg>
+            <span>Contact</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Company')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M3 21h18"></path>
+              <path d="M5 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+              <path d="M15 21V10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v11"></path>
+              <line x1="8" y1="7" x2="10" y2="7"></line>
+              <line x1="8" y1="11" x2="10" y2="11"></line>
+              <line x1="8" y1="15" x2="10" y2="15"></line>
+            </svg>
+            <span>Company</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Search Box Button -->
+      <div class="search-box-btn">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+          <circle cx="7" cy="7" r="5" stroke="#708291" stroke-width="1.5"/>
+          <path d="M11 11L14.5 14.5" stroke="#708291" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>Search</span>
+      </div>
+
+      <!-- Notifications Bell -->
+      <button class="header-icon-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+        <span class="badge-dot"></span>
+      </button>
+
+      <!-- Help Center -->
+      <button class="header-icon-btn" title="Help & Support">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </button>
+
+      <!-- Broadcast / Announcements -->
+      <button class="header-icon-btn" title="Announcements">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
+
+      <!-- Apps -->
+      <button class="apps-btn" title="Apps">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>Apps</span>
+      </button>
+
+      <!-- User Profile Avatar -->
+      <div class="user-avatar-header" title="Agent Profile">Y</div>
+    </div>
+  </header>
+
+  <!-- MAIN APP WORKSPACE CONTAINER -->
+  <div class="app-workspace">
+
+    <!-- LEFT GLOBAL NAVIGATION BAR -->
+    <aside class="global-left-sidebar">
+      <div class="sidebar-nav-group">
+        <!-- Dashboard Speedometer -->
+        <a href="dashboard.html" class="nav-icon-link" title="Dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 2v4M4.93 4.93l2.83 2.83M2 12h4M4.93 19.07l2.83-2.83M12 22v-4M19.07 19.07l-2.83-2.83M22 12h-4M19.07 4.93l-2.83 2.83"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </a>
+
+        <!-- Tickets (Active / Selected) -->
+        <a href="tickets.html" class="nav-icon-link active-dark" title="Tickets">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a3 3 0 0 0 0 6v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-2a3 3 0 0 0 0-6V9z"/>
+            <line x1="9" y1="9" x2="9" y2="9.01" stroke-width="2"/>
+            <line x1="9" y1="15" x2="9" y2="15.01" stroke-width="2"/>
+          </svg>
+        </a>
+
+        <!-- Contacts -->
+        <div class="nav-icon-link" title="Contacts">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+
+        <!-- Companies / Accounts -->
+        <div class="nav-icon-link" title="Companies">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+        </div>
+
+        <!-- Reports / Settings -->
+        <div class="nav-icon-link" title="Reports">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </div>
+
+        <!-- Automations / Nodes -->
+        <div class="nav-icon-link" title="Automations">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Bottom System Icons -->
+      <div class="sidebar-nav-group">
+        <div class="nav-icon-link" title="Freshworks Switcher">
+          <div class="waffle-icon">
+            <div class="waffle-dot c1"></div>
+            <div class="waffle-dot c2"></div>
+            <div class="waffle-dot c3"></div>
+            <div class="waffle-dot c4"></div>
+            <div class="waffle-dot c5"></div>
+            <div class="waffle-dot c6"></div>
+            <div class="waffle-dot c7"></div>
+            <div class="waffle-dot c8"></div>
+            <div class="waffle-dot c9"></div>
+          </div>
+        </div>
+
+        <div class="nav-icon-link" title="Chat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+
+        <div class="nav-icon-link" title="Toggle Sidebar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+            <path d="M14 9l-3 3 3 3"></path>
+          </svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- TICKETS VIEW: 2 COLUMNS (LIST + FILTERS) -->
+    <main class="tickets-view-container">
+
+      <!-- TICKETS LIST COLUMN -->
+      <section class="tickets-list-column">
+        <!-- Subtoolbar -->
+        <div class="tickets-subtoolbar">
+          <div class="toolbar-left-group">
+            <input type="checkbox" class="custom-checkbox">
+            <div class="sort-by-text">
+              <span>Sort by: <strong>Date created</strong></span>
+              <svg width="8" height="5" viewBox="0 0 8 5" fill="none">
+                <path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 1 Update Floating Pill in Center -->
+          <div class="floating-update-pill">
+            <div class="refresh-blue-circle">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <path d="M23 4v6h-6"></path>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+              </svg>
+            </div>
+            <span>1 update</span>
+          </div>
+
+          <div class="toolbar-right-group">
+            <div class="btn-toolbar-link">
+              <span>Layout: Card</span>
+              <svg width="8" height="5" viewBox="0 0 8 5" fill="none">
+                <path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <div class="btn-toolbar-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Export</span>
+            </div>
+
+            <div class="pagination-controls">
+              <span>1 - 12 of 12</span>
+              <span class="page-nav-arrow">&lt;</span>
+              <span class="page-nav-arrow">&gt;</span>
+            </div>
+
+            <div class="btn-toolbar-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="4" y1="21" x2="4" y2="14"></line>
+                <line x1="4" y1="10" x2="4" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12" y2="3"></line>
+                <line x1="20" y1="21" x2="20" y2="16"></line>
+                <line x1="20" y1="12" x2="20" y2="3"></line>
+                <line x1="1" y1="14" x2="7" y2="14"></line>
+                <line x1="9" y1="8" x2="15" y2="8"></line>
+                <line x1="17" y1="16" x2="23" y2="16"></line>
+              </svg>
+              <span>Filters (1)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TICKETS LIST ITEMS -->
+        <div class="tickets-list-items">
+
+          <!-- Ticket 1: Inbound ZIWO Call #953214 -->
+          <a href="ticket-ziwo.html" class="ticket-row-item">
+            <div class="ticket-row-left">
+              <input type="checkbox" class="custom-checkbox">
+              <div class="ticket-avatar avatar-purple">+</div>
+              <div class="ticket-main-info">
+                <div class="ticket-title-badges-line">
+                  <span class="badge-new">New</span>
+                  <span class="ticket-subject-title">Inbound ZIWO Call: +201555259687 #953214</span>
+                </div>
+                <div class="ticket-meta-subtitle">
+                  <span class="channel-handset-icon">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </span>
+                  <span>+201555259687</span>
+                  <span>•</span>
+                  <span>Created a few seconds ago</span>
+                  <span>•</span>
+                  <span>↩ First response due in 19 hours</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ticket-row-right">
+              <div class="prop-status-cell">
+                <div class="prop-priority-row">
+                  <span class="priority-square-green"></span>
+                  <span>Low</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-assignee-row" title="-- / Zamzam Wal...">
+                  <span>👤</span>
+                  <span>-- / Zamzam Wal...</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-state-row">
+                  <span>⤾</span>
+                  <span>Open</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Ticket 2: Tax Invoice #953176 -->
+          <a href="index.html" class="ticket-row-item">
+            <div class="ticket-row-left">
+              <input type="checkbox" class="custom-checkbox">
+              <div class="ticket-avatar avatar-blue">م</div>
+              <div class="ticket-main-info">
+                <div class="ticket-title-badges-line">
+                  <span class="badge-new">New</span>
+                  <span class="ticket-subject-title">Tax Invoice #953176</span>
+                </div>
+                <div class="ticket-meta-subtitle">
+                  <span class="channel-handset-icon">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </span>
+                  <span class="arabic-meta-text">ماور للحلول الهندسية ش م م ماور للحلول الهندسية ش م م</span>
+                  <span>•</span>
+                  <span>Created 2 hours ago</span>
+                  <span>•</span>
+                  <span>↩ First response due in 17 hours</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ticket-row-right">
+              <div class="prop-status-cell">
+                <div class="prop-priority-row">
+                  <span class="priority-square-green"></span>
+                  <span>Low</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-assignee-row" title="Finance / Ahmed Arif">
+                  <span>👤</span>
+                  <span>Finance / Ahmed Arif</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-state-row">
+                  <span>⤾</span>
+                  <span>Open</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Ticket 3: Carry In Repair/953167 #953167 -->
+          <a href="#" class="ticket-row-item">
+            <div class="ticket-row-left">
+              <input type="checkbox" class="custom-checkbox">
+              <div class="ticket-avatar avatar-purple">N</div>
+              <div class="ticket-main-info">
+                <div class="ticket-title-badges-line">
+                  <span class="badge-new">New</span>
+                  <span class="ticket-subject-title">Carry In Repair/953167 #953167</span>
+                </div>
+                <div class="ticket-meta-subtitle">
+                  <span class="channel-handset-icon">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </span>
+                  <span>nahla</span>
+                  <span>•</span>
+                  <span>Created 2 hours ago</span>
+                  <span>•</span>
+                  <span>↩ First response due in 5 days</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ticket-row-right">
+              <div class="prop-status-cell">
+                <div class="prop-priority-row">
+                  <span class="priority-square-green"></span>
+                  <span>Low</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-assignee-row" title="EG1 / Amr Mohame...">
+                  <span>👤</span>
+                  <span>EG1 / Amr Mohame...</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-state-row">
+                  <span>⤾</span>
+                  <span>Open</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Ticket 4: Tax invoice #953153 -->
+          <a href="index.html" class="ticket-row-item">
+            <div class="ticket-row-left">
+              <input type="checkbox" class="custom-checkbox">
+              <div class="ticket-avatar avatar-pink">م</div>
+              <div class="ticket-main-info">
+                <div class="ticket-title-badges-line">
+                  <span class="badge-new">New</span>
+                  <span class="ticket-subject-title">Tax invoice #953153</span>
+                </div>
+                <div class="ticket-meta-subtitle">
+                  <span class="channel-handset-icon">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </span>
+                  <span class="arabic-meta-text">مودو دي مينا للاستيراد والتوكيلات التجارية</span>
+                  <span>•</span>
+                  <span>Created 3 hours ago</span>
+                  <span>•</span>
+                  <span>↩ First response due in 16 hours</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ticket-row-right">
+              <div class="prop-status-cell">
+                <div class="prop-priority-row">
+                  <span class="priority-square-green"></span>
+                  <span>Low</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-assignee-row" title="Finance / Ahmed Arif">
+                  <span>👤</span>
+                  <span>Finance / Ahmed Arif</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-state-row">
+                  <span>⤾</span>
+                  <span>Open</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Ticket 5: Conversation with 953099# احمد فوزى معجوز -->
+          <a href="#" class="ticket-row-item">
+            <div class="ticket-row-left">
+              <input type="checkbox" class="custom-checkbox">
+              <div class="ticket-avatar avatar-blue">I</div>
+              <div class="ticket-main-info">
+                <div class="ticket-title-badges-line">
+                  <span class="badge-new">New</span>
+                  <span class="badge-arabic">Arabic Ticket</span>
+                  <span class="ticket-subject-title">Conversation with 953099# <span class="arabic-meta-text">احمد فوزى معجوز</span></span>
+                </div>
+                <div class="ticket-meta-subtitle">
+                  <span class="channel-handset-icon">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </span>
+                  <span class="arabic-meta-text">احمد فوزى معجوز</span>
+                  <span>•</span>
+                  <span>Created 4 hours ago</span>
+                  <span>•</span>
+                  <span>↩ First response due in 4 hours</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ticket-row-right">
+              <div class="prop-status-cell">
+                <div class="prop-priority-row">
+                  <span class="priority-square-green"></span>
+                  <span>Low</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-assignee-row" title="Online / Mohamed Sa...">
+                  <span>👤</span>
+                  <span>Online / Mohamed Sa...</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-state-row">
+                  <span>⤾</span>
+                  <span>Open</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Ticket 6: E-Invoice #953010 -->
+          <a href="#" class="ticket-row-item">
+            <div class="ticket-row-left">
+              <input type="checkbox" class="custom-checkbox">
+              <div class="ticket-avatar avatar-orange">I</div>
+              <div class="ticket-main-info">
+                <div class="ticket-title-badges-line">
+                  <span class="badge-new">New</span>
+                  <span class="ticket-subject-title">E-Invoice #953010</span>
+                </div>
+                <div class="ticket-meta-subtitle">
+                  <span class="channel-handset-icon">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </span>
+                  <span>Created 4 hours ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ticket-row-right">
+              <div class="prop-status-cell">
+                <div class="prop-priority-row">
+                  <span class="priority-square-green"></span>
+                  <span>Low</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-assignee-row" title="AMC / Ahmed Mahm...">
+                  <span>👤</span>
+                  <span>AMC / Ahmed Mahm...</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+                <div class="prop-state-row">
+                  <span>⤾</span>
+                  <span>Open</span>
+                  <svg width="7" height="4" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#50667a" stroke-width="1.2"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- RIGHT FILTERS SIDEBAR COLUMN -->
+      <aside class="tickets-filters-column">
+        <div class="filters-header-row">
+          <span class="filters-title">FILTERS</span>
+          <a href="#" class="show-applied-link">Show applied filters</a>
+        </div>
+
+        <div class="filters-body-scroll">
+          <!-- Search fields -->
+          <div class="search-fields-input-box">
+            <svg class="search-fields-icon" width="12" height="12" viewBox="0 0 16 16" fill="none">
+              <circle cx="7" cy="7" r="5" stroke="#708291" stroke-width="1.5"/>
+              <path d="M11 11L14.5 14.5" stroke="#708291" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <input type="text" class="search-fields-input" placeholder="Search fields">
+          </div>
+
+          <!-- Agents Include -->
+          <div class="filter-item-group">
+            <label class="filter-item-label">Agents Include</label>
+            <div class="filter-select-wrapper">
+              <select class="filter-select">
+                <option selected>Any agent</option>
+                <option>Ahmed Arif</option>
+                <option>Ahmed Mahmoud</option>
+                <option>Amr Mohamed Ashraf</option>
+                <option>Zamzam Walid Abdelraouf</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Groups Include -->
+          <div class="filter-item-group">
+            <label class="filter-item-label">Groups Include</label>
+            <div class="filter-select-wrapper">
+              <select class="filter-select">
+                <option selected>Any group</option>
+                <option>Finance</option>
+                <option>EG1</option>
+                <option>Online</option>
+                <option>AMC</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Created -->
+          <div class="filter-item-group">
+            <label class="filter-item-label">Created</label>
+            <div class="filter-select-wrapper">
+              <select class="filter-select">
+                <option selected>Any time</option>
+                <option>Today</option>
+                <option>Yesterday</option>
+                <option>This week</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Closed at -->
+          <div class="filter-item-group">
+            <label class="filter-item-label">Closed at</label>
+            <div class="filter-select-wrapper">
+              <select class="filter-select">
+                <option selected>Any time</option>
+                <option>Today</option>
+                <option>This week</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Resolved at -->
+          <div class="filter-item-group">
+            <label class="filter-item-label">Resolved at</label>
+            <div class="filter-select-wrapper">
+              <select class="filter-select">
+                <option selected>Any time</option>
+                <option>Today</option>
+                <option>This week</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Resolution due by -->
+          <div class="filter-item-group">
+            <label class="filter-item-label">Resolution due by</label>
+            <div class="filter-select-wrapper">
+              <select class="filter-select">
+                <option selected>Any time</option>
+                <option>Overdue</option>
+                <option>Due today</option>
+                <option>Due tomorrow</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="filters-footer">
+          <button class="btn-apply-filters">Apply</button>
+        </div>
+      </aside>
+
+    </main>
+
+  </div>
+
+  <!-- FRESHDESK MINT FLOATING ACTION BUTTON WITH ORANGE BADGE -->
+  <div class="freshdesk-float-widget" title="Freshworks Support Assistant">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="12" cy="12" r="3.5" fill="#ffffff"/>
+      <path d="M12 5V8.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M17 12H20.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    <div class="widget-orange-dot"></div>
+  </div>
+
+  <script>
+    // Toggle + New Menu Popup
+    function toggleNewMenu(e) {
+      if (e) {
+        e.stopPropagation();
+      }
+      const popup = document.getElementById('newMenuPopup');
+      if (popup) {
+        popup.classList.toggle('show');
+      }
+    }
+    window.toggleNewMenu = toggleNewMenu;
+
+    // Close popups on click outside
+    document.addEventListener('click', function(e) {
+      const popup = document.getElementById('newMenuPopup');
+      if (popup && popup.classList.contains('show')) {
+        if (!e.target.closest('.new-btn-container')) {
+          popup.classList.remove('show');
+        }
+      }
+    });
+
+    function createNewItem(type) {
+      const popup = document.getElementById('newMenuPopup');
+      if (popup) popup.classList.remove('show');
+      const toast = document.getElementById('toastSuccess');
+      if (toast) {
+        const toastSpan = toast.querySelector('span');
+        const oldMsg = toastSpan ? toastSpan.innerText : '';
+        if (toastSpan) toastSpan.innerText = `New ${type} creation dialog`;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+          if (toastSpan) toastSpan.innerText = oldMsg;
+        }, 2200);
+      }
+    }
+  
+    // Open & Close New Ticket Modal
+    function openNewTicketModal() {
+      window.location.href = 'new-ticket.html';
+    }
+
+    function closeNewTicketModal() {
+      const overlay = document.getElementById('newTicketModalOverlay');
+      if (overlay) overlay.classList.remove('open');
+      const form = document.getElementById('newTicketForm');
+      if (form) form.reset();
+      const fn = document.getElementById('attachedFileName');
+      if (fn) fn.innerText = 'Attach a file (Max 20MB)';
+    }
+
+    // Handle New Ticket Submission
+    function handleCreateTicket(e) {
+      e.preventDefault();
+      const requester = document.getElementById('modalTicketRequester').value.trim();
+      const subject = document.getElementById('modalTicketSubject').value.trim();
+      const priority = document.getElementById('modalTicketPriority').value;
+      const group = document.getElementById('modalTicketGroup').value;
+      const agent = document.getElementById('modalTicketAgent').value;
+
+      if (!requester || !subject) return;
+
+      const newTicketNumber = Math.floor(953215 + Math.random() * 50);
+
+      // If we are on tickets.html, dynamically prepend row
+      const ticketsContainer = document.querySelector('.tickets-cards-list, .ticket-cards-column');
+      if (ticketsContainer) {
+        const card = document.createElement('div');
+        card.className = 'ticket-card-row';
+        card.style.animation = 'fadeInMsg 0.3s ease';
+        card.innerHTML = `
+          <div class="card-left-select">
+            <input type="checkbox" class="ticket-checkbox">
+          </div>
+          <div class="card-avatar-circle user-avatar-sm-purple">${requester.charAt(0).toUpperCase()}</div>
+          <div class="card-info-col">
+            <div class="card-header-line">
+              <span class="badge-new-green">New</span>
+              <a href="ticket-ziwo.html" class="ticket-card-title">${subject} #${newTicketNumber}</a>
+            </div>
+            <div class="ticket-meta-subtitle">
+              <span>👤 ${requester}</span>
+              <span>• Created just now</span>
+              <span>• First response due in 24 hours</span>
+            </div>
+          </div>
+          <div class="card-properties-col">
+            <div class="card-prop-priority"><span class="priority-dot dot-low"></span> ${priority}</div>
+            <div class="card-prop-assignee">${group} / ${agent}</div>
+            <div class="card-prop-status">Open</div>
+          </div>
+        `;
+        ticketsContainer.insertBefore(card, ticketsContainer.firstChild);
+
+        // Update counter if present
+        const counter = document.querySelector('.tickets-count-badge');
+        if (counter) {
+          const cur = parseInt(counter.innerText) || 12;
+          counter.innerText = cur + 1;
+        }
+      }
+
+      closeNewTicketModal();
+
+      // Show Freshdesk Success Toast
+      const toast = document.getElementById('toastSuccess');
+      if (toast) {
+        const toastSpan = toast.querySelector('span');
+        const oldMsg = toastSpan ? toastSpan.innerText : '';
+        if (toastSpan) toastSpan.innerText = `Ticket #${newTicketNumber} created successfully.`;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+          if (toastSpan) toastSpan.innerText = oldMsg;
+        }, 3000);
+      }
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeNewTicketModal();
+      }
+    });
+
+  </script>
+
+  <!-- FRESHDESK NEW TICKET MODAL -->
+  <div class="modal-overlay" id="newTicketModalOverlay" onclick="if(event.target===this) closeNewTicketModal()">
+    <div class="new-ticket-modal">
+      <div class="new-ticket-modal-header">
+        <span class="new-ticket-modal-title">New ticket</span>
+        <button class="modal-close-icon" onclick="closeNewTicketModal()" title="Close">✕</button>
+      </div>
+      <form id="newTicketForm" onsubmit="handleCreateTicket(event)">
+        <div class="new-ticket-modal-body">
+          <!-- Requester -->
+          <div class="form-group-field">
+            <label>Contact / Requester <span class="req-star">*</span></label>
+            <input type="text" id="modalTicketRequester" class="form-control-input" placeholder="Search a contact or enter name / email / phone..." required>
+          </div>
+
+          <!-- Subject -->
+          <div class="form-group-field">
+            <label>Subject <span class="req-star">*</span></label>
+            <input type="text" id="modalTicketSubject" class="form-control-input" placeholder="Enter ticket subject..." required>
+          </div>
+
+          <!-- Type & Source -->
+          <div class="form-two-cols">
+            <div class="form-group-field">
+              <label>Type</label>
+              <select id="modalTicketType" class="form-control-select">
+                <option selected>Inbound call</option>
+                <option>Inbound Chat</option>
+                <option>Outbound Call</option>
+                <option>Carry-In Repair</option>
+                <option>Complaint</option>
+                <option>Sales</option>
+                <option>Store Deliveries</option>
+                <option>SDG Invoice copy request</option>
+                <option>Others</option>
+              </select>
+            </div>
+            <div class="form-group-field">
+              <label>Source</label>
+              <select id="modalTicketSource" class="form-control-select">
+                <option selected>Phone</option>
+                <option>Email</option>
+                <option>Chat</option>
+                <option>WhatsApp</option>
+                <option>Portal</option>
+                <option>Store Walk-in</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Status & Priority -->
+          <div class="form-two-cols">
+            <div class="form-group-field">
+              <label>Status</label>
+              <select id="modalTicketStatus" class="form-control-select">
+                <option selected>Open</option>
+                <option>Pending</option>
+                <option>Resolved</option>
+                <option>Closed</option>
+              </select>
+            </div>
+            <div class="form-group-field">
+              <label>Priority</label>
+              <select id="modalTicketPriority" class="form-control-select">
+                <option selected>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Urgent</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Group & Agent -->
+          <div class="form-two-cols">
+            <div class="form-group-field">
+              <label>Group</label>
+              <select id="modalTicketGroup" class="form-control-select">
+                <option selected>Finance</option>
+                <option>Customer Support</option>
+                <option>Sales</option>
+                <option>Operations</option>
+                <option>EG1 / AMC</option>
+              </select>
+            </div>
+            <div class="form-group-field">
+              <label>Agent</label>
+              <select id="modalTicketAgent" class="form-control-select">
+                <option selected>Ahmed Arif</option>
+                <option>Omniya Abd Rabo Ibrahim</option>
+                <option>Zamzam Walid Abdelraouf</option>
+                <option>Unassigned</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group-field">
+            <label>Description</label>
+            <textarea id="modalTicketDesc" class="form-control-textarea" placeholder="Describe the issue or customer request in detail..."></textarea>
+          </div>
+
+          <!-- Attach File -->
+          <label class="attach-file-row">
+            <input type="file" style="display: none;" onchange="if(this.files[0]) document.getElementById('attachedFileName').innerText = this.files[0].name;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+            </svg>
+            <span id="attachedFileName">Attach a file (Max 20MB)</span>
+          </label>
+        </div>
+
+        <div class="new-ticket-modal-footer">
+          <button type="button" class="btn-modal-cancel" onclick="closeNewTicketModal()">Cancel</button>
+          <button type="submit" class="btn-modal-create">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- FRESHDESK PROPERTIES/ACTION UPDATED TOAST -->
+  <div id="toastSuccess" class="freshdesk-toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span>Action completed successfully.</span>
+  </div>
+
+</body>
+</html>
+

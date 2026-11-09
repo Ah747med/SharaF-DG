@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Ticket - Sharaf DG Support</title>
+  <link rel="icon" href="Images/images.png" type="image/png">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #ffffff;
+      color: #12344d;
+      font-size: 13px;
+      overflow-x: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP NAVBAR */
+    .top-navbar {
+      height: 48px;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8ee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .sharaf-logo-badge {
+      background: #f7a800;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 800;
+      font-size: 11.5px;
+      color: #000000;
+      text-decoration: none;
+    }
+
+    .breadcrumb-area {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .breadcrumb-dropdown {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #1871e8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .breadcrumb-separator {
+      color: #708291;
+      font-size: 12px;
+    }
+
+    .ticket-number-header {
+      color: #12344d;
+      font-weight: 600;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .new-btn-container {
+      position: relative;
+    }
+
+    .btn-new-ticket {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #12344d;
+      cursor: pointer;
+    }
+    .btn-new-ticket * {
+      pointer-events: none;
+    }
+
+    .btn-new-ticket:hover {
+      background: #f8fafc;
+    }
+
+    /* + New Menu Real Dropdown */
+    .new-menu-popup {
+      display: none;
+      position: absolute;
+      top: 36px;
+      left: 0;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      z-index: 1000;
+      min-width: 155px;
+      padding: 6px 0;
+    }
+
+    .new-menu-popup.show {
+      display: block;
+      animation: menuPopupFade 0.15s ease;
+    }
+
+    .new-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      font-size: 13px;
+      color: #12344d;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.12s, color 0.12s;
+    }
+
+    .new-menu-item:hover {
+      background-color: #f3f5f8;
+      color: #1871e8;
+    }
+
+    .new-menu-item .menu-item-icon {
+      color: #708291;
+      transition: color 0.12s;
+      flex-shrink: 0;
+    }
+
+    .new-menu-item:hover .menu-item-icon {
+      color: #1871e8;
+    }
+
+    @keyframes menuPopupFade {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .search-box-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      color: #708291;
+      cursor: pointer;
+      min-width: 90px;
+    }
+
+    .header-icon-btn {
+      background: transparent;
+      border: none;
+      color: #475867;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .badge-dot {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 6px;
+      height: 6px;
+      background: #e53935;
+      border-radius: 50%;
+    }
+
+    .apps-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px solid #cfd7df;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      color: #475867;
+      cursor: pointer;
+    }
+
+    .user-avatar-header {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #dbe4ea;
+      color: #475867;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* WORKSPACE */
+    .app-workspace {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* LEFT SIDEBAR */
+    .global-left-sidebar {
+      width: 46px;
+      background: #ffffff;
+      border-right: 1px solid #e2e8ee;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      flex-shrink: 0;
+      z-index: 90;
+    }
+
+    .sidebar-nav-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .nav-icon-link {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      color: #50667a;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+
+    .nav-icon-link:hover {
+      background: #f0f4f7;
+      color: #12344d;
+    }
+
+    .nav-icon-link.active-dark {
+      background: #12344d;
+      color: #ffffff;
+    }
+
+    .waffle-icon {
+      display: grid;
+      grid-template-columns: repeat(3, 4px);
+      gap: 2px;
+    }
+
+    .waffle-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+    }
+    .waffle-dot.c1 { background: #ea4335; }
+    .waffle-dot.c2 { background: #4285f4; }
+    .waffle-dot.c3 { background: #fbbc05; }
+    .waffle-dot.c4 { background: #34a853; }
+    .waffle-dot.c5 { background: #4285f4; }
+    .waffle-dot.c6 { background: #ea4335; }
+    .waffle-dot.c7 { background: #fbbc05; }
+    .waffle-dot.c8 { background: #34a853; }
+    .waffle-dot.c9 { background: #4285f4; }
+
+    /* MAIN NEW TICKET VIEWPORT */
+    .new-ticket-main-container {
+      flex: 1;
+      overflow-y: auto;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .new-ticket-content-wrapper {
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 40px 120px 40px;
+    }
+
+    /* FORM FIELDS FROM SCREENSHOTS */
+    .fd-form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .fd-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .fd-label {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #33475b;
+    }
+
+    .fd-req-star {
+      color: #e53935;
+      margin-left: 2px;
+      font-weight: bold;
+    }
+
+    .contact-extra-links {
+      font-size: 11.5px;
+      color: #708291;
+    }
+
+    .contact-extra-links a {
+      color: #1871e8;
+      text-decoration: none;
+    }
+
+    .contact-extra-links a:hover {
+      text-decoration: underline;
+    }
+
+    .fd-input-control {
+      width: 100%;
+      height: 36px;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      padding: 0 12px;
+      font-size: 13px;
+      color: #12344d;
+      background: #ffffff;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .fd-input-control:focus {
+      border-color: #1871e8;
+      box-shadow: 0 0 0 1px #1871e8;
+    }
+
+    .fd-select-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .fd-select-control {
+      width: 100%;
+      height: 36px;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      padding: 0 32px 0 12px;
+      font-size: 13px;
+      color: #12344d;
+      background: #ffffff;
+      outline: none;
+      font-family: inherit;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+    }
+
+    .fd-select-control:focus {
+      border-color: #1871e8;
+      box-shadow: 0 0 0 1px #1871e8;
+    }
+
+    .fd-chevron-icon {
+      position: absolute;
+      right: 12px;
+      pointer-events: none;
+      color: #708291;
+    }
+
+    /* DESCRIPTION RICH EDITOR BOX */
+    .description-editor-card {
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 190px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .description-editor-card:focus-within {
+      border-color: #1871e8;
+      box-shadow: 0 0 0 1px #1871e8;
+    }
+
+    .editor-textarea-area {
+      flex: 1;
+      min-height: 120px;
+      border: none;
+      outline: none;
+      padding: 14px 16px;
+      font-size: 13.5px;
+      color: #12344d;
+      font-family: inherit;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .editor-toolbar-bottom {
+      border-top: 1px solid #eef2f5;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toolbar-row-top {
+      display: flex;
+      align-items: center;
+      padding: 6px 12px;
+      gap: 4px;
+      border-bottom: 1px solid #f5f7f9;
+      flex-wrap: wrap;
+    }
+
+    .tool-btn {
+      background: transparent;
+      border: none;
+      padding: 4px 6px;
+      border-radius: 3px;
+      font-size: 12.5px;
+      color: #475867;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: inherit;
+    }
+
+    .tool-btn:hover {
+      background: #f0f4f7;
+      color: #12344d;
+    }
+
+    .tool-btn strong {
+      font-family: serif;
+    }
+
+    .toolbar-row-bottom {
+      display: flex;
+      align-items: center;
+      padding: 6px 12px;
+      gap: 12px;
+      background: #f8fafc;
+    }
+
+    .bottom-tool-icon-btn {
+      background: transparent;
+      border: none;
+      color: #50667a;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 3px;
+    }
+
+    .bottom-tool-icon-btn:hover {
+      background: #e2e8ee;
+      color: #12344d;
+    }
+
+    /* STICKY BOTTOM ACTIONS FOOTER BAR */
+    .new-ticket-footer-bar {
+      position: fixed;
+      bottom: 0;
+      left: 46px; /* Offset for left sidebar */
+      right: 0;
+      height: 58px;
+      background: #ffffff;
+      border-top: 1px solid #e2e8ee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 100;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .create-another-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #12344d;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .create-another-label input {
+      cursor: pointer;
+      width: 15px;
+      height: 15px;
+    }
+
+    .footer-right-buttons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-fd-cancel {
+      height: 36px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      color: #12344d;
+      padding: 0 18px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-fd-cancel:hover {
+      background: #f5f7f9;
+    }
+
+    .btn-fd-create-group {
+      display: flex;
+      align-items: center;
+      height: 36px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(24, 113, 232, 0.35);
+    }
+
+    .btn-fd-create-main {
+      height: 100%;
+      background: #1871e8;
+      color: #ffffff;
+      border: none;
+      padding: 0 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-fd-create-main:hover {
+      background: #1258b5;
+    }
+
+    .btn-fd-create-arrow {
+      height: 100%;
+      background: #1871e8;
+      color: #ffffff;
+      border: none;
+      border-left: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    .btn-fd-create-arrow:hover {
+      background: #1258b5;
+    }
+
+    /* FRESHDESK TOAST NOTIFICATION */
+    .freshdesk-toast {
+      position: fixed;
+      top: 54px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-25px);
+      background: #12344d;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      z-index: 99999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .freshdesk-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+  
+    
+    /* FRESHDESK CUSTOM DROPDOWN (100% MATCHING SCREENSHOT) */
+    .prop-select-wrapper, .fd-select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .custom-dropdown-box {
+      width: 100%;
+      height: 34px;
+      border: 1px solid #cfd7df;
+      border-radius: 6px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .custom-dropdown-box:hover {
+      border-color: #9aa8b6;
+    }
+
+    .custom-dropdown.open .custom-dropdown-box {
+      border: 1.5px solid #2b66d2 !important;
+      box-shadow: 0 0 0 2px rgba(43, 102, 210, 0.15) !important;
+    }
+
+    .custom-dropdown-input {
+      width: calc(100% - 28px);
+      height: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 0 10px;
+      font-size: 12.5px;
+      color: #12344d;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* Blue selection highlight as shown in user screenshot */
+    .custom-dropdown-input::selection {
+      background: #2b66d2;
+      color: #ffffff;
+    }
+
+    .custom-dropdown-chevron {
+      position: absolute;
+      right: 10px;
+      color: #708291;
+      transition: transform 0.18s ease, color 0.18s ease;
+      pointer-events: none;
+    }
+
+    .custom-dropdown.open .custom-dropdown-chevron {
+      transform: rotate(180deg);
+      color: #2b66d2;
+    }
+
+    /* Custom Dropdown Menu List */
+    .custom-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border: 1px solid #dce4ec;
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(18, 52, 77, 0.14), 0 2px 6px rgba(18, 52, 77, 0.04);
+      padding: 4px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 9999;
+      animation: ddMenuFadeIn 0.12s ease;
+    }
+
+    @keyframes ddMenuFadeIn {
+      from { opacity: 0; transform: translateY(-3px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .custom-dropdown.open .custom-dropdown-menu {
+      display: block;
+    }
+
+    .custom-dropdown-option {
+      padding: 7px 10px;
+      font-size: 12.5px;
+      color: #33475b;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.1s, color 0.1s;
+      user-select: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+      text-align: left;
+    }
+
+    .custom-dropdown-option:hover {
+      background-color: #f0f5fc;
+      color: #1871e8;
+    }
+
+    /* Selected Item: soft sky-blue rounded background exactly matching screenshot */
+    .custom-dropdown-option.selected {
+      background-color: #deefff !important;
+      color: #12344d !important;
+      font-weight: 500;
+    }
+
+    /* Custom Slim Scrollbar Matching Screenshot */
+    .custom-dropdown-menu::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .custom-dropdown-menu::-webkit-scrollbar-track {
+      background: #f1f4f8;
+      border-radius: 4px;
+    }
+
+    .custom-dropdown-menu::-webkit-scrollbar-thumb {
+      background: #8898aa;
+      border-radius: 4px;
+    }
+
+    .custom-dropdown-menu::-webkit-scrollbar-thumb:hover {
+      background: #627282;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER BAR -->
+  <header class="top-navbar">
+    <div class="nav-left">
+      <!-- Sharaf DG Yellow Logo Badge -->
+      <a href="dashboard.html" class="sharaf-logo-badge" title="Sharaf DG">
+        <span class="sharaf-text">Sharaf</span>
+        <span class="dg-text">DG</span>
+      </a>
+
+      <!-- Breadcrumbs -->
+      <div class="breadcrumb-area">
+        <a href="tickets.html" class="breadcrumb-dropdown">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M10 13L5 8l5-5 1.4 1.4L7.8 8l3.6 3.6z"/>
+          </svg>
+          <span>Tickets</span>
+        </a>
+        <span class="breadcrumb-separator">&gt;</span>
+        <span class="ticket-number-header">New Ticket</span>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <!-- + New Button with Image Dropdown -->
+      <div class="new-btn-container">
+        <button class="btn-new-ticket" onclick="toggleNewMenu(event)" type="button">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1V11M1 6H11" stroke="#12344d" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span>New</span>
+          <svg width="8" height="5" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="#475867" stroke-width="1.2"/></svg>
+        </button>
+
+        <!-- Real Freshdesk + New Dropdown Menu -->
+        <div class="new-menu-popup" id="newMenuPopup">
+          <a href="new-ticket.html" class="new-menu-item" onclick="window.location.href='new-ticket.html';">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M2 9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a3 3 0 0 0 0 6v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-2a3 3 0 0 0 0-6V9z"/>
+              <line x1="9" y1="9" x2="9" y2="9.01" stroke-width="2"/>
+              <line x1="9" y1="15" x2="9" y2="15.01" stroke-width="2"/>
+            </svg>
+            <span>Ticket</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Email')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <polyline points="22 6 12 13 2 6"></polyline>
+            </svg>
+            <span>Email</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Contact')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+              <circle cx="12" cy="10" r="3"></circle>
+              <path d="M7 18a5 5 0 0 1 10 0"></path>
+            </svg>
+            <span>Contact</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Company')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M3 21h18"></path>
+              <path d="M5 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+              <path d="M15 21V10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v11"></path>
+              <line x1="8" y1="7" x2="10" y2="7"></line>
+              <line x1="8" y1="11" x2="10" y2="11"></line>
+              <line x1="8" y1="15" x2="10" y2="15"></line>
+            </svg>
+            <span>Company</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="search-box-btn">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+          <circle cx="7" cy="7" r="5" stroke="#708291" stroke-width="1.5"/>
+          <path d="M11 11L14.5 14.5" stroke="#708291" stroke-width="1.5"/>
+        </svg>
+        <span>Search</span>
+      </div>
+
+      <button class="header-icon-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+        <span class="badge-dot"></span>
+      </button>
+
+      <button class="header-icon-btn" title="Help & Support">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </button>
+
+      <button class="header-icon-btn" title="Announcements">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
+
+      <button class="apps-btn" title="Apps">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>Apps</span>
+      </button>
+
+      <div class="user-avatar-header" title="Agent Profile">Y</div>
+    </div>
+  </header>
+
+  <!-- MAIN APP WORKSPACE CONTAINER -->
+  <div class="app-workspace">
+
+    <!-- LEFT GLOBAL NAVIGATION BAR -->
+    <aside class="global-left-sidebar">
+      <div class="sidebar-nav-group">
+        <a href="dashboard.html" class="nav-icon-link" title="Dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v4M4.93 4.93l2.83 2.83M2 12h4M4.93 19.07l2.83-2.83M12 22v-4M19.07 19.07l-2.83-2.83M22 12h-4M19.07 4.93l-2.83 2.83"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </a>
+
+        <a href="tickets.html" class="nav-icon-link active-dark" title="All unresolved tickets">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M2 9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a3 3 0 0 0 0 6v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-2a3 3 0 0 0 0-6V9z"/>
+            <line x1="9" y1="9" x2="9" y2="9.01" stroke-width="2"/>
+            <line x1="9" y1="15" x2="9" y2="15.01" stroke-width="2"/>
+          </svg>
+        </a>
+
+        <div class="nav-icon-link" title="Contacts">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+
+        <div class="nav-icon-link" title="Companies">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="nav-icon-link" title="Freshworks Switcher">
+          <div class="waffle-icon">
+            <div class="waffle-dot c1"></div>
+            <div class="waffle-dot c2"></div>
+            <div class="waffle-dot c3"></div>
+            <div class="waffle-dot c4"></div>
+            <div class="waffle-dot c5"></div>
+            <div class="waffle-dot c6"></div>
+            <div class="waffle-dot c7"></div>
+            <div class="waffle-dot c8"></div>
+            <div class="waffle-dot c9"></div>
+          </div>
+        </div>
+
+        <div class="nav-icon-link" title="Toggle Sidebar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+            <path d="M14 9l-3 3 3 3"></path>
+          </svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN FORM VIEWPORT -->
+    <main class="new-ticket-main-container">
+      <form id="createTicketForm" onsubmit="submitNewTicket(event)">
+        <div class="new-ticket-content-wrapper">
+
+          <!-- 1. Contact * -->
+          <div class="fd-form-group">
+            <div class="fd-label-row">
+              <label class="fd-label">Contact <span class="fd-req-star">*</span></label>
+              <div class="contact-extra-links">
+                <a href="#">Add new contact</a> | <a href="#">Add Cc</a>
+              </div>
+            </div>
+            <div class="fd-select-wrapper">
+              <input type="text" id="ticketContact" class="fd-input-control" placeholder="" required>
+              <svg class="fd-chevron-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 2. Subject * -->
+          <div class="fd-form-group">
+            <label class="fd-label">Subject <span class="fd-req-star">*</span></label>
+            <input type="text" id="ticketSubject" class="fd-input-control" placeholder="" required>
+          </div>
+
+          <!-- 3. Type -->
+          <div class="fd-form-group">
+            <label class="fd-label">Type</label>
+            <div class="fd-select-wrapper">
+              <select id="ticketType" class="fd-select-control">
+                <option selected>--</option>
+                <option>Inbound call</option>
+                <option>Inbound Chat</option>
+                <option>Outbound Call</option>
+                <option>Carry-In Repair</option>
+                <option>Vendor Allocation</option>
+                <option>SRAN Transaction</option>
+                <option>Store Deliveries</option>
+                <option>Complaint</option>
+                <option>Sales</option>
+                <option>SDG Invoice copy request</option>
+                <option>Others</option>
+              </select>
+              <svg class="fd-chevron-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 4. Ticket Channel -->
+          <div class="fd-form-group">
+            <label class="fd-label">Ticket Channel</label>
+            <div class="fd-select-wrapper">
+              <select id="ticketChannel" class="fd-select-control">
+                <option selected>--</option>
+                <option>Phone</option>
+                <option>Email</option>
+                <option>Chat</option>
+                <option>WhatsApp</option>
+                <option>Store Walk-in</option>
+                <option>Social Media</option>
+                <option>Portal</option>
+              </select>
+              <svg class="fd-chevron-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 5. Source -->
+          <div class="fd-form-group">
+            <label class="fd-label">Source</label>
+            <div class="fd-select-wrapper">
+              <select id="ticketSource" class="fd-select-control">
+                <option selected>Phone</option>
+                <option>Email</option>
+                <option>Chat</option>
+                <option>WhatsApp</option>
+                <option>Portal</option>
+                <option>Store Walk-in</option>
+              </select>
+              <svg class="fd-chevron-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 6. Status * -->
+          <div class="fd-form-group">
+            <label class="fd-label">Status <span class="fd-req-star">*</span></label>
+            <div class="fd-select-wrapper">
+              <select id="ticketStatus" class="fd-select-control">
+                <option selected>Open</option>
+                <option>Pending</option>
+                <option>Resolved</option>
+                <option>Closed</option>
+                <option>Waiting on Customer</option>
+                <option>Waiting on Third Party</option>
+              </select>
+              <svg class="fd-chevron-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 7. Priority * -->
+          <div class="fd-form-group">
+            <label class="fd-label">Priority <span class="fd-req-star">*</span></label>
+            <div class="fd-select-wrapper">
+              <select id="ticketPriority" class="fd-select-control">
+                <option selected>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Urgent</option>
+              </select>
+              <svg class="fd-chevron-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 8. Group -->
+          <div class="fd-form-group">
+            <label class="fd-label">Group</label>
+            <div class="fd-select-wrapper">
+              <select id="ticketGroup" class="fd-select-control">
+                <option selected>--</option>
+                <option>Finance</option>
+                <option>Customer Support</option>
+                <option>Sales</option>
+                <option>Operations</option>
+                <option>EG1 / AMC</option>
+                <option>Online</option>
+              </select>
+              <svg class="fd-chevron-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 9. Agent -->
+          <div class="fd-form-group">
+            <label class="fd-label">Agent</label>
+            <div class="fd-select-wrapper">
+              <select id="ticketAgent" class="fd-select-control">
+                <option selected>Youssef Mohamed Emam Ramdan</option>
+                <option>Ahmed Arif</option>
+                <option>Omniya Abd Rabo Ibrahim</option>
+                <option>Zamzam Walid Abdelraouf</option>
+                <option>Amr Mohamed Ashraf</option>
+                <option>Mahmoud Aziz Shoaib Ibrahim</option>
+                <option>Mohamed Saed</option>
+                <option>Unassigned</option>
+              </select>
+              <svg class="fd-chevron-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 10. Product -->
+          <div class="fd-form-group">
+            <label class="fd-label">Product</label>
+            <div class="fd-select-wrapper">
+              <select id="ticketProduct" class="fd-select-control">
+                <option selected>--</option>
+                <option>Electronics</option>
+                <option>Appliances</option>
+                <option>Mobile & Tablets</option>
+                <option>Laptops & Computers</option>
+                <option>Accessories</option>
+              </select>
+              <svg class="fd-chevron-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 11. Description with Rich Toolbar -->
+          <div class="fd-form-group">
+            <label class="fd-label">Description</label>
+            <div class="description-editor-card">
+              <textarea id="ticketDescription" class="editor-textarea-area" placeholder=""></textarea>
+              <div class="editor-toolbar-bottom">
+                <div class="toolbar-row-top">
+                  <button type="button" class="tool-btn" title="Bold"><strong>B</strong></button>
+                  <button type="button" class="tool-btn" title="Italic"><em>I</em></button>
+                  <button type="button" class="tool-btn" title="Underline"><u>U</u></button>
+                  <button type="button" class="tool-btn" title="Heading 1">H1</button>
+                  <button type="button" class="tool-btn" title="Heading 2">H2</button>
+                  <button type="button" class="tool-btn" title="Font Color">A ▾</button>
+                  <button type="button" class="tool-btn" title="Align">≡ ▾</button>
+                  <button type="button" class="tool-btn" title="List">⁝≡ ▾</button>
+                  <button type="button" class="tool-btn" title="Quote">❝</button>
+                  <button type="button" class="tool-btn" title="Insert Link">🔗</button>
+                  <button type="button" class="tool-btn" title="Insert Image">📷</button>
+                  <button type="button" class="tool-btn" title="Code Block">( )</button>
+                  <button type="button" class="tool-btn" title="Formula"><em>fx</em></button>
+                </div>
+                <div class="toolbar-row-bottom">
+                  <button type="button" class="bottom-tool-icon-btn" title="Formatting">A</button>
+                  <label class="bottom-tool-icon-btn" title="Attach file" style="cursor: pointer;">
+                    <input type="file" style="display: none;" onchange="alert('File attached: ' + this.files[0].name)">
+                    📎
+                  </label>
+                  <button type="button" class="bottom-tool-icon-btn" title="Insert Table">⊞</button>
+                  <button type="button" class="bottom-tool-icon-btn" title="Insert Canned Response">📖</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 12. Parent/child: -->
+          <div class="fd-form-group">
+            <label class="fd-label">Parent/child:</label>
+            <input type="text" id="ticketParentChild" class="fd-input-control" placeholder="">
+          </div>
+
+          <!-- 13. Associated Ticket ID: -->
+          <div class="fd-form-group">
+            <label class="fd-label">Associated Ticket ID:</label>
+            <input type="text" id="ticketAssociatedId" class="fd-input-control" placeholder="">
+          </div>
+
+          <!-- 14. Call ID -->
+          <div class="fd-form-group">
+            <label class="fd-label">Call ID</label>
+            <input type="text" id="ticketCallId" class="fd-input-control" placeholder="">
+          </div>
+
+          <!-- 15. Reason for exception/On Hold: -->
+          <div class="fd-form-group">
+            <label class="fd-label">Reason for exception/On Hold:</label>
+            <div class="fd-select-wrapper">
+              <select id="ticketReasonException" class="fd-select-control">
+                <option selected>--</option>
+                <option>Awaiting Customer Response</option>
+                <option>Pending Internal Review</option>
+                <option>Vendor Escalation</option>
+                <option>Store Verification</option>
+              </select>
+              <svg class="fd-chevron-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 16. Created By -->
+          <div class="fd-form-group">
+            <label class="fd-label">Created By</label>
+            <div class="fd-select-wrapper">
+              <select id="ticketCreatedBy" class="fd-select-control">
+                <option selected>--</option>
+                <option>Youssef Mohamed Emam Ramdan</option>
+                <option>Jahaber Sadiq</option>
+                <option>Omniya Abd Rabo Ibrahim</option>
+                <option>Ahmed Arif</option>
+                <option>Zamzam Walid Abdelraouf</option>
+                <option>System</option>
+              </select>
+              <svg class="fd-chevron-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 17. Tags -->
+          <div class="fd-form-group">
+            <label class="fd-label">Tags</label>
+            <input type="text" id="ticketTags" class="fd-input-control" placeholder="">
+          </div>
+
+        </div>
+
+        <!-- STICKY BOTTOM ACTIONS FOOTER BAR -->
+        <footer class="new-ticket-footer-bar">
+          <label class="create-another-label">
+            <input type="checkbox" id="chkCreateAnother">
+            <span>Create another</span>
+          </label>
+
+          <div class="footer-right-buttons">
+            <button type="button" class="btn-fd-cancel" onclick="window.location.href='tickets.html'">Cancel</button>
+            <div class="btn-fd-create-group">
+              <button type="submit" class="btn-fd-create-main">Create</button>
+              <button type="button" class="btn-fd-create-arrow">▾</button>
+            </div>
+          </div>
+        </footer>
+      </form>
+    </main>
+  </div>
+
+  <!-- FRESHDESK TOAST NOTIFICATION -->
+  <div id="toastSuccess" class="freshdesk-toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span>Ticket created successfully.</span>
+  </div>
+
+  <script>
+    function toggleNewMenu(e) {
+      if (e) {
+        e.stopPropagation();
+      }
+      const popup = document.getElementById('newMenuPopup');
+      if (popup) {
+        popup.classList.toggle('show');
+      }
+    }
+    window.toggleNewMenu = toggleNewMenu;
+
+    document.addEventListener('click', function(e) {
+      const popup = document.getElementById('newMenuPopup');
+      if (popup && popup.classList.contains('show')) {
+        if (!e.target.closest('.new-btn-container')) {
+          popup.classList.remove('show');
+        }
+      }
+    });
+
+    function createNewItem(type) {
+      const popup = document.getElementById('newMenuPopup');
+      if (popup) popup.classList.remove('show');
+      const toast = document.getElementById('toastSuccess');
+      if (toast) {
+        const toastSpan = toast.querySelector('span');
+        if (toastSpan) toastSpan.innerText = `New ${type} creation dialog`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+      }
+    }
+
+    function submitNewTicket(e) {
+      e.preventDefault();
+      const contact = document.getElementById('ticketContact').value.trim();
+      const subject = document.getElementById('ticketSubject').value.trim();
+
+      if (!contact || !subject) {
+        alert('Please fill in both Contact and Subject fields.');
+        return;
+      }
+
+      const newTicketNumber = Math.floor(953215 + Math.random() * 50);
+
+      // Show toast
+      const toast = document.getElementById('toastSuccess');
+      if (toast) {
+        const toastSpan = toast.querySelector('span');
+        if (toastSpan) toastSpan.innerText = `Ticket #${newTicketNumber} created successfully.`;
+        toast.classList.add('show');
+      }
+
+      const createAnother = document.getElementById('chkCreateAnother').checked;
+
+      if (createAnother) {
+        // Reset form to create another
+        document.getElementById('createTicketForm').reset();
+        document.getElementById('ticketAgent').value = 'Youssef Mohamed Emam Ramdan';
+        document.getElementById('ticketSource').value = 'Phone';
+        document.getElementById('ticketStatus').value = 'Open';
+        document.getElementById('ticketPriority').value = 'Low';
+        setTimeout(() => {
+          if (toast) toast.classList.remove('show');
+        }, 2500);
+      } else {
+        setTimeout(() => {
+          window.location.href = 'tickets.html';
+        }, 1200);
+      }
+    }
+  
+    
+    // --- CUSTOM FRESHDESK SEARCHABLE DROPDOWN SYSTEM (MATCHING SCREENSHOT) ---
+    function initCustomDropdowns() {
+      const wrappers = document.querySelectorAll('.prop-select-wrapper, .fd-select-wrapper');
+      wrappers.forEach(wrapper => {
+        const select = wrapper.querySelector('select');
+        if (!select || wrapper.classList.contains('custom-dropdown-init')) return;
+        wrapper.classList.add('custom-dropdown', 'custom-dropdown-init');
+
+        const oldChevron = wrapper.querySelector('.select-chevron, .fd-chevron-icon');
+        if (oldChevron) oldChevron.style.display = 'none';
+
+        select.style.display = 'none';
+
+        const currentSelected = select.options[select.selectedIndex] || select.options[0];
+        const currentVal = currentSelected ? currentSelected.text : '--';
+
+        // Trigger container box
+        const box = document.createElement('div');
+        box.className = 'custom-dropdown-box';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'custom-dropdown-input';
+        input.value = currentVal;
+        input.autocomplete = 'off';
+        input.spellcheck = false;
+
+        const chevron = document.createElement('div');
+        chevron.className = 'custom-dropdown-chevron';
+        chevron.innerHTML = `
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        `;
+
+        box.appendChild(input);
+        box.appendChild(chevron);
+
+        // Menu
+        const menu = document.createElement('div');
+        menu.className = 'custom-dropdown-menu';
+
+        function buildOptions(filterText = '') {
+          menu.innerHTML = '';
+          const q = filterText.toLowerCase().trim();
+          let count = 0;
+
+          Array.from(select.options).forEach((opt, idx) => {
+            if (q && !opt.text.toLowerCase().includes(q)) return;
+            count++;
+
+            const optDiv = document.createElement('div');
+            optDiv.className = 'custom-dropdown-option' + (select.selectedIndex === idx ? ' selected' : '');
+            optDiv.innerText = opt.text;
+            optDiv.dataset.value = opt.value || opt.text;
+            optDiv.dataset.index = idx;
+
+            optDiv.addEventListener('mousedown', function(e) {
+              e.preventDefault();
+              select.selectedIndex = idx;
+              input.value = opt.text;
+
+              menu.querySelectorAll('.custom-dropdown-option').forEach(o => o.classList.remove('selected'));
+              this.classList.add('selected');
+
+              wrapper.classList.remove('open');
+
+              // Dispatch change event to notify properties engine
+              const event = new Event('change', { bubbles: true });
+              select.dispatchEvent(event);
+            });
+
+            menu.appendChild(optDiv);
+          });
+
+          if (count === 0) {
+            const noRes = document.createElement('div');
+            noRes.className = 'custom-dropdown-option';
+            noRes.style.color = '#8898aa';
+            noRes.style.cursor = 'default';
+            noRes.innerText = 'No matches found';
+            menu.appendChild(noRes);
+          }
+        }
+
+        buildOptions();
+
+        // Focus & Click: open and highlight text like in user screenshot
+        function openDropdown() {
+          document.querySelectorAll('.custom-dropdown.open').forEach(d => {
+            if (d !== wrapper) d.classList.remove('open');
+          });
+
+          buildOptions('');
+          wrapper.classList.add('open');
+
+          // Highlight text in blue as shown in screenshot
+          setTimeout(() => {
+            input.select();
+            const selectedOpt = menu.querySelector('.custom-dropdown-option.selected');
+            if (selectedOpt) selectedOpt.scrollIntoView({ block: 'nearest' });
+          }, 10);
+        }
+
+        input.addEventListener('focus', function() {
+          openDropdown();
+        });
+
+        box.addEventListener('click', function(e) {
+          if (e.target !== input) {
+            if (wrapper.classList.contains('open')) {
+              wrapper.classList.remove('open');
+            } else {
+              input.focus();
+              openDropdown();
+            }
+          }
+        });
+
+        // Typing in input filters the options
+        input.addEventListener('input', function() {
+          if (!wrapper.classList.contains('open')) {
+            wrapper.classList.add('open');
+          }
+          buildOptions(this.value);
+        });
+
+        // Keyboard navigation
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const opts = Array.from(menu.querySelectorAll('.custom-dropdown-option:not([style*="default"])'));
+            if (!opts.length) return;
+            let curIdx = opts.findIndex(o => o.classList.contains('selected'));
+            if (curIdx < opts.length - 1) {
+              opts.forEach(o => o.classList.remove('selected'));
+              curIdx++;
+              opts[curIdx].classList.add('selected');
+              opts[curIdx].scrollIntoView({ block: 'nearest' });
+            }
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const opts = Array.from(menu.querySelectorAll('.custom-dropdown-option:not([style*="default"])'));
+            if (!opts.length) return;
+            let curIdx = opts.findIndex(o => o.classList.contains('selected'));
+            if (curIdx > 0) {
+              opts.forEach(o => o.classList.remove('selected'));
+              curIdx--;
+              opts[curIdx].classList.add('selected');
+              opts[curIdx].scrollIntoView({ block: 'nearest' });
+            }
+          } else if (e.key === 'Enter') {
+            e.preventDefault();
+            const selectedOpt = menu.querySelector('.custom-dropdown-option.selected');
+            if (selectedOpt && selectedOpt.dataset.index !== undefined) {
+              const idx = parseInt(selectedOpt.dataset.index);
+              select.selectedIndex = idx;
+              input.value = select.options[idx].text;
+              wrapper.classList.remove('open');
+              const event = new Event('change', { bubbles: true });
+              select.dispatchEvent(event);
+            }
+          } else if (e.key === 'Escape') {
+            wrapper.classList.remove('open');
+            input.value = select.options[select.selectedIndex] ? select.options[select.selectedIndex].text : '--';
+          }
+        });
+
+        input.addEventListener('blur', function() {
+          setTimeout(() => {
+            if (!wrapper.contains(document.activeElement)) {
+              wrapper.classList.remove('open');
+              input.value = select.options[select.selectedIndex] ? select.options[select.selectedIndex].text : '--';
+            }
+          }, 150);
+        });
+
+        wrapper.appendChild(box);
+        wrapper.appendChild(menu);
+
+        wrapper.updateCustomValue = function(val) {
+          for (let i = 0; i < select.options.length; i++) {
+            if (select.options[i].value === val || select.options[i].text === val) {
+              select.selectedIndex = i;
+              input.value = select.options[i].text;
+              buildOptions('');
+              break;
+            }
+          }
+        };
+      });
+    }
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.custom-dropdown')) {
+        document.querySelectorAll('.custom-dropdown.open').forEach(d => d.classList.remove('open'));
+      }
+    });
+
+    initCustomDropdowns();
+</script>
+</body>
+</html>

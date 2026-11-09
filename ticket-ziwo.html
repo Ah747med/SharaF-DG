@@ -1,0 +1,3671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharaf DG - Ticket #953214 Inbound ZIWO Call: +201555259687</title>
+  <link rel="icon" href="Images/images.png" type="image/png">
+  <!-- Google Fonts: Inter & Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f5f7f9;
+      color: #12344d;
+      font-size: 13px;
+      line-height: 1.4;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP HEADER BAR */
+    .top-navbar {
+      height: 48px;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8ee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      flex-shrink: 0;
+      z-index: 100;
+      position: relative;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .sharaf-logo-badge {
+      background: linear-gradient(135deg, #fdbb14, #f5a623);
+      border-radius: 6px;
+      width: 32px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .sharaf-logo-badge .sharaf-text {
+      font-size: 7.5px;
+      font-weight: 800;
+      color: #12284c;
+      letter-spacing: -0.2px;
+      line-height: 8px;
+    }
+
+    .sharaf-logo-badge .dg-text {
+      font-size: 10.5px;
+      font-weight: 900;
+      color: #0b3e8c;
+      line-height: 10px;
+    }
+
+    .breadcrumb-area {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+    }
+
+    .breadcrumb-dropdown {
+      color: #1871e8;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .breadcrumb-separator {
+      color: #92a2b1;
+      font-size: 12px;
+      margin: 0 2px;
+    }
+
+    .ticket-number-header {
+      color: #475867;
+      font-weight: 500;
+    }
+
+    /* Header Right Actions */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .new-btn-container {
+      position: relative;
+    }
+
+    .btn-new-ticket {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #12344d;
+      cursor: pointer;
+    }
+
+    .btn-new-ticket:hover {
+      background: #f8fafc;
+    }
+
+    /* + New Menu Dropdown with WhatsApp Image 6.02.47 PM */
+    .new-menu-popup {
+      display: none;
+      position: absolute;
+      top: 36px;
+      left: 0;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      border-radius: 6px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      z-index: 200;
+      overflow: hidden;
+      width: 175px;
+    }
+
+    .new-menu-popup.show {
+      display: block;
+    }
+
+    .new-menu-img-preview {
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid #eef2f5;
+    }
+
+    .search-box-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      color: #708291;
+      cursor: pointer;
+      min-width: 90px;
+    }
+
+    .header-icon-btn {
+      background: transparent;
+      border: none;
+      color: #475867;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .badge-dot {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 6px;
+      height: 6px;
+      background: #e53935;
+      border-radius: 50%;
+    }
+
+    .apps-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px solid #cfd7df;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      color: #475867;
+      cursor: pointer;
+    }
+
+    .user-avatar-header {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #dbe4ea;
+      color: #475867;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* MAIN APP WORKSPACE */
+    .app-workspace {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      height: calc(100vh - 48px);
+    }
+
+    /* LEFT GLOBAL NAVIGATION SIDEBAR */
+    .global-left-sidebar {
+      width: 46px;
+      background: #ffffff;
+      border-right: 1px solid #e2e8ee;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      flex-shrink: 0;
+      z-index: 90;
+    }
+
+    .sidebar-nav-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .nav-icon-link {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      color: #50667a;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+
+    .nav-icon-link:hover {
+      background: #f0f4f7;
+      color: #12344d;
+    }
+
+    .nav-icon-link.active-dark {
+      background: #12344d;
+      color: #ffffff;
+    }
+
+    /* Freshworks Launcher 9 Dots */
+    .waffle-icon {
+      display: grid;
+      grid-template-columns: repeat(3, 4px);
+      grid-gap: 2.5px;
+      padding: 4px;
+    }
+
+    .waffle-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+    }
+
+    .waffle-dot.c1 {
+      background: #ea4335;
+    }
+
+    .waffle-dot.c2 {
+      background: #4285f4;
+    }
+
+    .waffle-dot.c3 {
+      background: #fbbc05;
+    }
+
+    .waffle-dot.c4 {
+      background: #34a853;
+    }
+
+    .waffle-dot.c5 {
+      background: #4285f4;
+    }
+
+    .waffle-dot.c6 {
+      background: #ea4335;
+    }
+
+    .waffle-dot.c7 {
+      background: #fbbc05;
+    }
+
+    .waffle-dot.c8 {
+      background: #34a853;
+    }
+
+    .waffle-dot.c9 {
+      background: #4285f4;
+    }
+
+    /* CENTER MAIN CONTENT: 3-COLUMN TICKET VIEW */
+    .ticket-content-columns {
+      display: flex;
+      flex: 1;
+      height: 100%;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    /* COLUMN 1: CONVERSATION AREA */
+    .conversation-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+      border-right: 1px solid #e2e8ee;
+      background: #ffffff;
+    }
+
+    /* Action Toolbar */
+    .ticket-action-bar {
+      padding: 8px 18px;
+      border-bottom: 1px solid #eef2f5;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .action-square-btn {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #cfd7df;
+      background: #ffffff;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      cursor: pointer;
+    }
+
+    .ticket-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #cfd7df;
+      background: #ffffff;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #33475b;
+      cursor: pointer;
+    }
+
+    .ticket-action-btn:hover {
+      background: #f8fafc;
+    }
+
+    .more-actions-btn {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 4px;
+    }
+
+    /* Conversation Body */
+    .conversation-body {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .ticket-title-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .ticket-channel-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #eef2f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #33475b;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .ticket-title-details {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .ticket-title-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ticket-main-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: #12344d;
+    }
+
+    .status-badge-new {
+      background: #e3f6ea;
+      color: #0f7b3e;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 12px;
+    }
+
+    .ticket-meta-created {
+      font-size: 12.5px;
+      color: #64748b;
+    }
+
+    /* Customer Message */
+    .message-item-clean {
+      display: flex;
+      gap: 12px;
+      padding: 8px 0;
+    }
+
+    .avatar-hana {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #ede7f6;
+      color: #5e35b1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .message-content-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .message-author-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .author-name-meta {
+      font-size: 12.5px;
+      color: #708291;
+    }
+
+    .author-name-meta strong {
+      color: #1871e8;
+      font-weight: 600;
+    }
+
+    .mini-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #708291;
+    }
+
+    .mini-icon-btn {
+      padding: 3px;
+      cursor: pointer;
+      color: #708291;
+    }
+
+    .message-text-simple {
+      font-size: 13px;
+      color: #12344d;
+    }
+
+    /* Private Note Card */
+    .private-note-card {
+      background: #fff8ec;
+      border: 1px solid #fae6c8;
+      border-radius: 6px;
+      padding: 14px 18px;
+      display: flex;
+      gap: 14px;
+    }
+
+    .avatar-note-gray {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #dbe4ea;
+      color: #475867;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .note-content-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .note-author-header {
+      font-size: 12.5px;
+      color: #708291;
+    }
+
+    .note-author-header strong {
+      color: #12344d;
+      font-weight: 600;
+    }
+
+    .note-title-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: #12344d;
+    }
+
+    /* Audio Player Widget */
+    .audio-player-container {
+      background: #f1f3f4;
+      border-radius: 24px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 12px;
+      max-width: 320px;
+      margin-top: 4px;
+    }
+
+    .audio-play-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #3c4043;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .audio-time-label {
+      font-size: 11.5px;
+      color: #3c4043;
+      font-family: inherit;
+    }
+
+    .audio-scrubber-track {
+      flex: 1;
+      height: 4px;
+      background: #dadce0;
+      border-radius: 2px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .audio-scrubber-progress {
+      width: 0%;
+      height: 100%;
+      background: #1871e8;
+      border-radius: 2px;
+    }
+
+    .call-details-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12.5px;
+      color: #12344d;
+      line-height: 1.5;
+    }
+
+    /* Reply Editor Box */
+    .reply-section-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 15px;
+      align-items: flex-start;
+    }
+
+    .user-avatar-cyan {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #e2f0fd;
+      color: #1871e8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .reply-editor-card {
+      flex: 1;
+      border: 1px solid #cfd7df;
+      border-radius: 6px;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .reply-tabs-bar {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #eef2f5;
+      padding: 6px 10px;
+      gap: 6px;
+    }
+
+    .reply-tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #50667a;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .reply-tab-btn.active {
+      background: #eaf2fc;
+      color: #1871e8;
+      font-weight: 600;
+    }
+
+    .reply-textarea-box {
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #12344d;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .reply-bottom-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 8px 14px 12px 14px;
+    }
+
+    .btn-send-reply {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: #84a8f3;
+      color: #ffffff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* COLUMN 2: PROPERTIES PANEL */
+    .properties-column {
+      width: 255px;
+      border-right: 1px solid #e2e8ee;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      height: 100%;
+    }
+
+    /* SLA Status Box */
+    .sla-status-header-box {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f0f4f7;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sla-open-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 600;
+      color: #12344d;
+    }
+
+    .sla-item-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .sla-item-icon {
+      color: #0f7b3e;
+      margin-top: 2px;
+    }
+
+    .sla-item-texts {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      flex: 1;
+    }
+
+    .sla-title {
+      font-size: 11.5px;
+      color: #50667a;
+    }
+
+    .sla-timestamp {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #12344d;
+    }
+
+    .sla-edit-btn {
+      color: #1871e8;
+      cursor: pointer;
+    }
+
+    .properties-header {
+      padding: 14px 16px 8px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #475867;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .properties-form-body {
+      padding: 10px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .prop-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .prop-field-label {
+      font-size: 12px;
+      color: #50667a;
+      font-weight: 500;
+    }
+
+    .prop-select-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .prop-select {
+      width: 100%;
+      height: 32px;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      padding: 0 26px 0 10px;
+      font-size: 12.5px;
+      color: #12344d;
+      background: #ffffff;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .select-chevron {
+      position: absolute;
+      right: 9px;
+      pointer-events: none;
+      color: #708291;
+    }
+
+    .prop-input-text {
+      width: 100%;
+      height: 32px;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      padding: 0 10px;
+      font-size: 12px;
+      color: #12344d;
+      outline: none;
+    }
+
+    .prop-textarea {
+      width: 100%;
+      height: 105px !important;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      padding: 8px 10px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #12344d;
+      font-family: inherit;
+      resize: vertical;
+      outline: none;
+      box-sizing: border-box;
+      background: #ffffff;
+    }
+
+    .prop-textarea:focus {
+      border-color: #1871e8;
+      box-shadow: 0 0 0 1px #1871e8;
+    }
+
+    /* Tag Chip for Arabic Ticket */
+    .tags-container-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      padding: 4px 8px;
+      min-height: 32px;
+      background: #ffffff;
+    }
+
+    .tag-chip {
+      background: #eef2f6;
+      border: 1px solid #cfd7df;
+      color: #33475b;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tag-input-bare {
+      border: none;
+      outline: none;
+      font-size: 12px;
+      flex: 1;
+      min-width: 60px;
+    }
+
+    /* Tooltip / Image Popup for each property */
+    .field-img-popup {
+      display: none;
+      position: absolute;
+      right: 105%;
+      top: 0;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      z-index: 500;
+      width: 230px;
+      padding: 8px;
+    }
+
+    .field-img-popup.active {
+      display: block;
+    }
+
+    .field-img-popup img {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .field-img-popup .popup-caption {
+      font-size: 10.5px;
+      color: #708291;
+      margin-top: 5px;
+      text-align: center;
+    }
+
+    .properties-footer {
+      padding: 12px 16px;
+      border-top: 1px solid #f0f4f7;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .btn-update-props {
+      width: 100%;
+      height: 34px;
+      background: #84a8f3;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* COLUMN 3: RIGHT PANEL */
+    .right-info-column {
+      width: 285px;
+      background: #ffffff;
+      border-right: 1px solid #e2e8ee;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .right-panel-top-nav {
+      height: 42px;
+      border-bottom: 1px solid #eef2f5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      flex-shrink: 0;
+    }
+
+    .activities-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #475867;
+      cursor: pointer;
+    }
+
+    .right-nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #8fa0b0;
+      font-size: 13px;
+    }
+
+    .info-accordion-section {
+      border-bottom: 1px solid #f0f4f7;
+    }
+
+    .accordion-header {
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .accordion-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #33475b;
+    }
+
+    .edit-link-blue {
+      color: #1871e8;
+      font-weight: 500;
+      margin-left: 4px;
+    }
+
+    .accordion-body {
+      padding: 8px 14px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-profile-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-avatar-sm-purple {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #ede7f6;
+      color: #5e35b1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .phone-bold-blue {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1871e8;
+    }
+
+    .contact-field-label {
+      font-size: 11px;
+      color: #708291;
+    }
+
+    .view-more-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #1871e8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .timeline-item-card {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .timeline-phone-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #eef2f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #50667a;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .timeline-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #12344d;
+    }
+
+    /* CTI WIDGET & RECEIPT STYLES (MATCHING SCREENSHOT) */
+    .cti-widget-section .accordion-header {
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s ease;
+    }
+
+    .cti-widget-section .accordion-header:hover {
+      background: #f0f4f8;
+    }
+
+    .cti-widget-body {
+      display: none;
+      padding: 12px 14px 16px 14px;
+      background: #ffffff;
+      border-top: 1px solid #f0f4f7;
+    }
+
+    .cti-widget-body.open {
+      display: block;
+      animation: fadeInCti 0.22s ease;
+    }
+
+    @keyframes fadeInCti {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cti-chevron {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cti-chevron.rotated {
+      transform: rotate(180deg);
+    }
+
+    .cti-search-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .cti-search-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #12344d;
+    }
+
+    .btn-view-360 {
+      background: #d32f2f;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.15s;
+    }
+
+    .btn-view-360:hover {
+      background: #b71c1c;
+    }
+
+    .cti-input-group {
+      width: 100%;
+    }
+
+    .cti-select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .cti-select {
+      width: 100%;
+      height: 32px;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      padding: 0 24px 0 8px;
+      font-size: 12px;
+      color: #12344d;
+      background: #ffffff;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .cti-select:focus,
+    .cti-phone-input:focus {
+      border-color: #1871e8;
+    }
+
+    .cti-select-arrows {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .cti-phone-input {
+      width: 100%;
+      height: 32px;
+      border: 1px solid #cfd7df;
+      border-radius: 4px;
+      padding: 0 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #12344d;
+      background: #ffffff;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .btn-cti-search {
+      margin-top: 8px;
+      background: #1871e8;
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      padding: 4px 18px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-cti-search:hover {
+      background: #1258b5;
+      box-shadow: 0 2px 6px rgba(24, 113, 232, 0.3);
+    }
+
+    .cti-customer-card {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid #eef2f5;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .cti-customer-name-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cti-name-box {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .cti-label-bold {
+      font-size: 12px;
+      font-weight: 700;
+      color: #12344d;
+    }
+
+    .cti-val-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #12344d;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .cti-link-orders {
+      color: #1871e8;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .cti-link-orders:hover {
+      text-decoration: underline;
+    }
+
+    .cti-info-line {
+      font-size: 11.5px;
+      color: #50667a;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .cti-val {
+      color: #12344d;
+      font-weight: 500;
+    }
+
+    .cti-val-order {
+      color: #12344d;
+      font-weight: 600;
+      font-family: monospace;
+      font-size: 11px;
+    }
+
+    .cti-badges-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 4px 0;
+    }
+
+    .cti-badge-store {
+      display: inline-block;
+      padding: 1px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      background: #f1f5f9;
+      border-radius: 3px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .cti-badge-paid {
+      display: inline-block;
+      padding: 1px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0d9488;
+      background: #ccfbf1;
+      border-radius: 3px;
+      border: 1px solid #99f6e4;
+    }
+
+    .cti-receipt-table-wrapper {
+      margin-top: 6px;
+      border-top: 1px solid #eef2f5;
+      padding-top: 6px;
+      overflow-x: auto;
+    }
+
+    .cti-receipt-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    .cti-receipt-table th {
+      text-align: left;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #12344d;
+      padding: 4px 0 6px 0;
+      border-bottom: 1px solid #e2e8ee;
+    }
+
+    .cti-receipt-table td {
+      padding: 6px 0;
+      vertical-align: top;
+      color: #12344d;
+    }
+
+    .order-item-desc {
+      font-size: 11px;
+      line-height: 1.35;
+      color: #33475b;
+      font-weight: 500;
+    }
+
+    .order-item-qty {
+      text-align: center;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #12344d;
+    }
+
+    .order-item-amount {
+      text-align: right;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #12344d;
+      white-space: nowrap;
+    }
+
+    .amount-curr {
+      font-size: 10px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .item-divider-row td {
+      padding: 0;
+    }
+
+    .receipt-divider {
+      border: none;
+      border-top: 1px dashed #e2e8ee;
+      margin: 4px 0;
+    }
+
+    .receipt-total-row td {
+      border-top: 1px solid #cfd7df;
+      padding-top: 8px;
+    }
+
+    /* FAR RIGHT SLIM DOCK TOOLBAR */
+    .rightmost-dock-bar {
+      width: 38px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 0;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .dock-icon-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .freshdesk-float-widget {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #00b3a4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 179, 164, 0.35);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .widget-orange-dot {
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 11px;
+      height: 11px;
+      background: #fdbb14;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    /* ALL IMAGES MODAL VIEWER */
+    .images-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .images-modal-backdrop.open {
+      display: flex;
+    }
+
+    .images-modal-content {
+      background: #ffffff;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid #eef2f5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #708291;
+    }
+
+    .modal-body-grid {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      overflow-y: auto;
+    }
+
+    .modal-img-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8ee;
+      border-radius: 6px;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .modal-img-card img {
+      max-width: 100%;
+      max-height: 160px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .modal-img-card .img-caption {
+      font-size: 11px;
+      color: #33475b;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .btn-open-images-gallery {
+      position: fixed;
+      bottom: 74px;
+      right: 18px;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      color: #12344d;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      z-index: 999;
+      transition: all 0.15s;
+    }
+
+    .btn-open-images-gallery:hover {
+      background: #f0f4f7;
+      border-color: #1871e8;
+    }
+
+    .btn-new-ticket * {
+      pointer-events: none;
+    }
+
+    /* REAL FRESHDESK + NEW DROPDOWN MENU */
+    .new-menu-popup {
+      display: none;
+      position: absolute;
+      top: 36px;
+      left: 0;
+      background: #ffffff;
+      border: 1px solid #cfd7df;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+      z-index: 9999;
+      min-width: 160px;
+      padding: 6px 0;
+    }
+
+    .new-menu-popup.show {
+      display: block;
+      animation: menuPopupFade 0.15s ease;
+    }
+
+    .new-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      font-size: 13px;
+      color: #12344d;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.12s, color 0.12s;
+    }
+
+    .new-menu-item:hover {
+      background-color: #f0f5fc;
+      color: #1871e8;
+    }
+
+    .new-menu-item .menu-item-icon {
+      color: #708291;
+      transition: color 0.12s;
+      flex-shrink: 0;
+    }
+
+    .new-menu-item:hover .menu-item-icon {
+      color: #1871e8;
+    }
+
+    @keyframes menuPopupFade {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn-update-props {
+      width: 100%;
+      height: 34px;
+      background: #84a8f3;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: not-allowed;
+      opacity: 0.7;
+      transition: all 0.2s ease;
+    }
+
+    .btn-update-props.active {
+      background: #1871e8;
+      color: #ffffff;
+      cursor: pointer;
+      opacity: 1;
+      box-shadow: 0 2px 8px rgba(24, 113, 232, 0.4);
+    }
+
+    .btn-update-props.active:hover {
+      background: #1258b5;
+      box-shadow: 0 3px 10px rgba(24, 113, 232, 0.5);
+    }
+
+    .btn-send-reply {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: #84a8f3;
+      color: #ffffff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: not-allowed;
+      opacity: 0.7;
+      transition: all 0.2s ease;
+    }
+
+    .btn-send-reply.active {
+      background: #1871e8;
+      cursor: pointer;
+      opacity: 1;
+      box-shadow: 0 2px 6px rgba(24, 113, 232, 0.35);
+    }
+
+    .btn-send-reply.active:hover {
+      background: #1258b5;
+      box-shadow: 0 3px 8px rgba(24, 113, 232, 0.45);
+    }
+
+    .freshdesk-toast {
+      position: fixed;
+      top: 54px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-25px);
+      background: #12344d;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      z-index: 99999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .freshdesk-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+
+
+    /* FRESHDESK CUSTOM DROPDOWN (100% MATCHING SCREENSHOT) */
+    .prop-select-wrapper,
+    .fd-select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .custom-dropdown-box {
+      width: 100%;
+      height: 34px;
+      border: 1px solid #cfd7df;
+      border-radius: 6px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .custom-dropdown-box:hover {
+      border-color: #9aa8b6;
+    }
+
+    .custom-dropdown.open .custom-dropdown-box {
+      border: 1.5px solid #2b66d2 !important;
+      box-shadow: 0 0 0 2px rgba(43, 102, 210, 0.15) !important;
+    }
+
+    .custom-dropdown-input {
+      width: calc(100% - 28px);
+      height: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 0 10px;
+      font-size: 12.5px;
+      color: #12344d;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* Blue selection highlight as shown in user screenshot */
+    .custom-dropdown-input::selection {
+      background: #2b66d2;
+      color: #ffffff;
+    }
+
+    .custom-dropdown-chevron {
+      position: absolute;
+      right: 10px;
+      color: #708291;
+      transition: transform 0.18s ease, color 0.18s ease;
+      pointer-events: none;
+    }
+
+    .custom-dropdown.open .custom-dropdown-chevron {
+      transform: rotate(180deg);
+      color: #2b66d2;
+    }
+
+    /* Custom Dropdown Menu List */
+    .custom-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border: 1px solid #dce4ec;
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(18, 52, 77, 0.14), 0 2px 6px rgba(18, 52, 77, 0.04);
+      padding: 4px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 9999;
+      animation: ddMenuFadeIn 0.12s ease;
+    }
+
+    @keyframes ddMenuFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-3px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .custom-dropdown.open .custom-dropdown-menu {
+      display: block;
+    }
+
+    .custom-dropdown-option {
+      padding: 7px 10px;
+      font-size: 12.5px;
+      color: #33475b;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.1s, color 0.1s;
+      user-select: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+      text-align: left;
+    }
+
+    .custom-dropdown-option:hover {
+      background-color: #f0f5fc;
+      color: #1871e8;
+    }
+
+    /* Selected Item: soft sky-blue rounded background exactly matching screenshot */
+    .custom-dropdown-option.selected {
+      background-color: #deefff !important;
+      color: #12344d !important;
+      font-weight: 500;
+    }
+
+    /* Custom Slim Scrollbar Matching Screenshot */
+    .custom-dropdown-menu::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .custom-dropdown-menu::-webkit-scrollbar-track {
+      background: #f1f4f8;
+      border-radius: 4px;
+    }
+
+    .custom-dropdown-menu::-webkit-scrollbar-thumb {
+      background: #8898aa;
+      border-radius: 4px;
+    }
+
+    .custom-dropdown-menu::-webkit-scrollbar-thumb:hover {
+      background: #627282;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP HEADER BAR -->
+  <header class="top-navbar">
+    <div class="nav-left">
+      <!-- Sharaf DG Yellow Logo Badge -->
+      <div class="sharaf-logo-badge" title="Sharaf DG">
+        <span class="sharaf-text">Sharaf</span>
+        <span class="dg-text">DG</span>
+      </div>
+
+      <!-- Breadcrumbs -->
+      <div class="breadcrumb-area">
+        <a href="tickets.html" class="breadcrumb-dropdown">
+          <span>*</span>
+          <span>All unresolved tickets</span>
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1L5 5L9 1" stroke="#1871e8" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </a>
+        <span class="breadcrumb-separator">&gt;</span>
+        <span class="ticket-number-header">953214</span>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <!-- + New Button with Real Dropdown Menu -->
+      <div class="new-btn-container">
+        <button class="btn-new-ticket" onclick="toggleNewMenu(event)" type="button">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1V11M1 6H11" stroke="#12344d" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          <span>New</span>
+          <svg width="8" height="5" viewBox="0 0 8 5" fill="none" style="margin-left: 2px;">
+            <path d="M1 1L4 4L7 1" stroke="#475867" stroke-width="1.2" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <!-- Real Freshdesk + New Dropdown Menu -->
+        <div class="new-menu-popup" id="newMenuPopup">
+          <a href="new-ticket.html" class="new-menu-item" onclick="window.location.href='new-ticket.html';">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8">
+              <path
+                d="M2 9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a3 3 0 0 0 0 6v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-2a3 3 0 0 0 0-6V9z" />
+              <line x1="9" y1="9" x2="9" y2="9.01" stroke-width="2" />
+              <line x1="9" y1="15" x2="9" y2="15.01" stroke-width="2" />
+            </svg>
+            <span>Ticket</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Email')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <polyline points="22 6 12 13 2 6"></polyline>
+            </svg>
+            <span>Email</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Contact')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8">
+              <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+              <circle cx="12" cy="10" r="3"></circle>
+              <path d="M7 18a5 5 0 0 1 10 0"></path>
+            </svg>
+            <span>Contact</span>
+          </a>
+          <a href="javascript:void(0)" class="new-menu-item" onclick="createNewItem('Company')">
+            <svg class="menu-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8">
+              <path d="M3 21h18"></path>
+              <path d="M5 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+              <path d="M15 21V10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v11"></path>
+              <line x1="8" y1="7" x2="10" y2="7"></line>
+              <line x1="8" y1="11" x2="10" y2="11"></line>
+              <line x1="8" y1="15" x2="10" y2="15"></line>
+            </svg>
+            <span>Company</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="search-box-btn">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+          <circle cx="7" cy="7" r="5" stroke="#708291" stroke-width="1.5" />
+          <path d="M11 11L14.5 14.5" stroke="#708291" stroke-width="1.5" />
+        </svg>
+        <span>Search</span>
+      </div>
+
+      <button class="header-icon-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+        <span class="badge-dot"></span>
+      </button>
+
+      <button class="header-icon-btn" title="Help & Support">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </button>
+
+      <button class="header-icon-btn" title="Announcements">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
+
+      <button class="apps-btn" title="Apps">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>Apps</span>
+      </button>
+
+      <div class="user-avatar-header" title="Agent Profile">Y</div>
+    </div>
+  </header>
+
+  <!-- MAIN APP WORKSPACE CONTAINER -->
+  <div class="app-workspace">
+
+    <!-- LEFT GLOBAL NAVIGATION BAR -->
+    <aside class="global-left-sidebar">
+      <div class="sidebar-nav-group">
+        <a href="dashboard.html" class="nav-icon-link" title="Dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path
+              d="M12 2v4M4.93 4.93l2.83 2.83M2 12h4M4.93 19.07l2.83-2.83M12 22v-4M19.07 19.07l-2.83-2.83M22 12h-4M19.07 4.93l-2.83 2.83">
+            </path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </a>
+
+        <a href="tickets.html" class="nav-icon-link active-dark" title="Tickets">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M2 9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v2a3 3 0 0 0 0 6v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-2a3 3 0 0 0 0-6V9z" />
+            <line x1="9" y1="9" x2="9" y2="9.01" stroke-width="2" />
+            <line x1="9" y1="15" x2="9" y2="15.01" stroke-width="2" />
+          </svg>
+        </a>
+
+        <div class="nav-icon-link" title="Contacts">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+
+        <div class="nav-icon-link" title="Companies">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+        </div>
+
+        <div class="nav-icon-link" title="Reports">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+            </path>
+          </svg>
+        </div>
+
+        <div class="nav-icon-link" title="Automations">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Bottom System Icons -->
+      <div class="sidebar-nav-group">
+        <div class="nav-icon-link" title="Freshworks Switcher">
+          <div class="waffle-icon">
+            <div class="waffle-dot c1"></div>
+            <div class="waffle-dot c2"></div>
+            <div class="waffle-dot c3"></div>
+            <div class="waffle-dot c4"></div>
+            <div class="waffle-dot c5"></div>
+            <div class="waffle-dot c6"></div>
+            <div class="waffle-dot c7"></div>
+            <div class="waffle-dot c8"></div>
+            <div class="waffle-dot c9"></div>
+          </div>
+        </div>
+
+        <div class="nav-icon-link" title="Chat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+
+        <div class="nav-icon-link" title="Toggle Sidebar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+            <path d="M14 9l-3 3 3 3"></path>
+          </svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER 3-COLUMN TICKET VIEW -->
+    <main class="ticket-content-columns">
+
+      <!-- COLUMN 1: CONVERSATION AREA -->
+      <section class="conversation-column">
+        <!-- Ticket Action Toolbar -->
+        <div class="ticket-action-bar">
+          <button class="action-square-btn" title="Select / Back">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            </svg>
+          </button>
+
+          <button class="action-square-btn" title="Star / Favorite">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+              </polygon>
+            </svg>
+          </button>
+
+          <!-- Note -->
+          <button class="ticket-action-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <span>Note</span>
+          </button>
+
+          <!-- Forward -->
+          <button class="ticket-action-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 17 20 12 15 7"></polyline>
+              <path d="M4 18v-2a4 4 0 0 1 4-4h12"></path>
+            </svg>
+            <span>Forward</span>
+          </button>
+
+          <!-- Close -->
+          <button class="ticket-action-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Close</span>
+          </button>
+
+          <!-- Print -->
+          <button class="action-square-btn" title="Print">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+          </button>
+
+          <!-- More Options -->
+          <button class="more-actions-btn" title="More actions">⋮</button>
+        </div>
+
+        <!-- Conversation Details -->
+        <div class="conversation-body">
+          <!-- Ticket Title Row -->
+          <div class="ticket-title-row">
+            <div class="ticket-channel-icon" title="Channel: Phone">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#33475b" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
+              </svg>
+            </div>
+            <div class="ticket-title-details">
+              <div class="ticket-title-line">
+                <h1 class="ticket-main-title">Inbound ZIWO Call: +201555259687</h1>
+              </div>
+              <div>
+                <span class="status-badge-new">New</span>
+              </div>
+              <div class="ticket-meta-created">
+                Created by <span>Jahaber Sadiq</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Message Item 1: hana ZIWO Voice call -->
+          <div class="message-item-clean">
+            <div class="avatar-hana">H</div>
+            <div class="message-content-col">
+              <div class="message-author-header">
+                <span class="author-name-meta"><strong>hana</strong> reported via phone • a minute ago (Mon, 2 Nov 2026
+                  at 6:03 PM)</span>
+                <div class="mini-actions-row">
+                  <span class="mini-icon-btn" title="Add note">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 20h9"></path>
+                      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                  </span>
+                  <span class="mini-icon-btn" title="Forward">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="15 17 20 12 15 7"></polyline>
+                      <path d="M4 18v-2a4 4 0 0 1 4-4h12"></path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <p class="message-text-simple">ZIWO Voice call.</p>
+            </div>
+          </div>
+
+          <!-- Message Item 2: Private Note with ZIWO Recording Audio Player -->
+          <div class="private-note-card">
+            <div class="avatar-note-gray">J</div>
+            <div class="note-content-col">
+              <div class="note-author-header">
+                <strong>Jahaber Sadiq</strong> added a private note • a few seconds ago (Mon, 2 Nov 2026 at 6:03 PM)
+              </div>
+              <span class="note-title-text">ZIWO recording</span>
+
+              <!-- Interactive Audio Player -->
+              <div class="audio-player-container">
+                <button class="audio-play-btn" onclick="togglePlayAudio(this)">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <span class="audio-time-label">0:00 / 0:48</span>
+                <div class="audio-scrubber-track">
+                  <div class="audio-scrubber-progress"></div>
+                </div>
+                <span class="audio-speaker-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  </svg>
+                </span>
+                <span class="audio-more-icon">⋮</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Message Item 3: Private Note with Call Log Details -->
+          <div class="private-note-card">
+            <div class="avatar-note-gray">J</div>
+            <div class="note-content-col">
+              <div class="note-author-header">
+                <strong>Jahaber Sadiq</strong> added a private note • a few seconds ago (Mon, 2 Nov 2026 at 6:03 PM)
+              </div>
+              <div class="call-details-lines">
+                <div>Inbound Call from: +201555259687</div>
+                <div>Time of call: November 2nd 2026, 6:03:03</div>
+                <div>Call duration : 00:00:48</div>
+                <div>Call Id : f263c307-4537-4cd9-96e4-c0b85a144a77</div>
+                <div>Answered by: Zamzam Walid Abdelraouf</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Reply / Note Box -->
+          <div class="reply-section-row" id="replySectionRow">
+            <div class="user-avatar-cyan">Y</div>
+            <div class="reply-editor-card">
+              <div class="reply-tabs-bar">
+                <button class="reply-tab-btn active">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                  </svg>
+                  <span>Note</span>
+                </button>
+                <button class="reply-tab-btn">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 17 20 12 15 7"></polyline>
+                    <path d="M4 18v-2a4 4 0 0 1 4-4h12"></path>
+                  </svg>
+                  <span>Forward</span>
+                </button>
+              </div>
+
+              <textarea class="reply-textarea-box" id="replyTextarea"
+                placeholder="Type your response here..."></textarea>
+
+              <div class="reply-bottom-bar">
+                <button class="btn-send-reply" id="btnSendReply" title="Send (Ctrl+Enter)">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+      </section>
+
+      <!-- COLUMN 2: PROPERTIES PANEL (AUTHENTIC FRESHDESK ACCORDING TO SCREENSHOTS) -->
+      <section class="properties-column">
+        <!-- SLA Status Box (from Screenshot 3) -->
+        <div class="sla-status-header-box">
+          <div class="sla-open-row">
+            <span>Closed</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#708291" stroke-width="1.8" style="cursor: pointer;">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <line x1="9" y1="3" x2="9" y2="21"></line>
+            </svg>
+          </div>
+          <div class="sla-item-row">
+            <div class="sla-item-icon" style="color: #e67e22;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 14 4 9 9 4"></polyline>
+                <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+              </svg>
+            </div>
+            <div class="sla-item-texts">
+              <span class="sla-title">First response due in 34 minutes</span>
+              <span class="sla-timestamp">Mon 09 Nov 2026, 06:44 pm</span>
+            </div>
+          </div>
+          <div class="sla-item-row">
+            <div class="sla-item-icon" style="color: #22c55e;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 14 14"></polyline>
+              </svg>
+            </div>
+            <div class="sla-item-texts">
+              <span class="sla-title">Resolution due in 2 hours</span>
+              <span class="sla-timestamp">Mon 09 Nov 2026, 07:44 pm</span>
+            </div>
+            <div class="sla-edit-btn" title="Edit SLA">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1871e8" stroke-width="1.8">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="properties-header">
+          <span>PROPERTIES</span>
+        </div>
+
+        <div class="properties-form-body">
+          <!-- 1. Tags -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Tags</label>
+            <div class="tags-container-box">
+              <input type="text" class="tag-input-bare" placeholder="Search tags to add">
+            </div>
+          </div>
+
+          <!-- 2. Type -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Type</label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>Call Back Request</option>
+                <option>Inbound call</option>
+                <option>Inbound Chat</option>
+                <option>Outbound Call</option>
+                <option>Carry-In Repair</option>
+                <option>Vendor Allocation</option>
+                <option>Store Deliveries</option>
+                <option>On-Site services</option>
+                <option>Social Media</option>
+                <option>Complaint</option>
+                <option>Sales</option>
+                <option>Customer Follow up</option>
+                <option>Others</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 3. Business_vertical -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Business_vertical</label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>Brick & Mortar</option>
+                <option>Online</option>
+                <option>Marketplace</option>
+                <option>Corporate</option>
+                <option>B2B</option>
+                <option>Others</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 4. Nature of Call -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Nature of Call</label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>Request</option>
+                <option>Inquiry</option>
+                <option>Complaint</option>
+                <option>Escalation</option>
+                <option>Feedback</option>
+                <option>Others</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 5. Call Sub Type -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Call Sub Type</label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>Return & Exchange</option>
+                <option>Order Status</option>
+                <option>Delivery</option>
+                <option>Warranty & Repair</option>
+                <option>Payment Issue</option>
+                <option>Cancellation</option>
+                <option>Others</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 6. Call Sub Sub Type * -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Call Sub Sub Type <span style="color:#e53935;">*</span></label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>Return & exchange policy</option>
+                <option>Defective Product</option>
+                <option>Damaged Item</option>
+                <option>Wrong Item Delivered</option>
+                <option>Missing Parts</option>
+                <option>Change of Mind</option>
+                <option>Others</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 7. Agent Remarks: -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Agent Remarks:</label>
+            <textarea class="prop-input-text prop-textarea"
+              style="height: 110px; resize: vertical; font-family: inherit; font-size: 12px; line-height: 1.45; padding: 6px 10px;"
+              placeholder="Add agent remarks...">SIEG103110826046 customer explains that she purchased a Teva range hood from the Mall of Egypt branch. When the delivery representative arrived, he refused her request to open</textarea>
+          </div>
+
+          <!-- 8. Call/Query attended by: * -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Call/Query attended by: <span style="color:#e53935;">*</span></label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>Zamzam Walid Abdelraouf</option>
+                <option>Marwa Abou EL Saoud</option>
+                <option>Tamer El said</option>
+                <option>Ahmed Arif</option>
+                <option>Omniya Abd Rabo Ibrahim</option>
+                <option>Amr Mohamed Ashraf</option>
+                <option>Mahmoud Aziz Shoaib Ibrahim</option>
+                <option>Mohamed Saed</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 9. Call back done by: * -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Call back done by: <span style="color:#e53935;">*</span></label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>Tamer El said</option>
+                <option>Zamzam Walid Abdelraouf</option>
+                <option>Marwa Abou EL Saoud</option>
+                <option>Ahmed Arif</option>
+                <option>Omniya Abd Rabo Ibrahim</option>
+                <option>Amr Mohamed Ashraf</option>
+                <option>Unassigned</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 10. Ticket Channel: * -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Ticket Channel: <span style="color:#e53935;">*</span></label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>Voice</option>
+                <option>Email</option>
+                <option>Chat</option>
+                <option>WhatsApp</option>
+                <option>Store Walk-in</option>
+                <option>Social Media</option>
+                <option>Portal</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 11. Status * -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Status <span style="color:#e53935;">*</span></label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>Closed</option>
+                <option>Open</option>
+                <option>Pending</option>
+                <option>Resolved</option>
+                <option>Waiting on Customer</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 12. Priority -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Priority</label>
+            <div class="prop-select-wrapper priority-wrapper">
+              <select class="prop-select">
+                <option selected>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Urgent</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 13. Group * -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Group <span style="color:#e53935;">*</span></label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>EG1</option>
+                <option>Customer Support</option>
+                <option>Finance</option>
+                <option>Sales</option>
+                <option>Operations</option>
+                <option>Online</option>
+                <option>AMC</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 14. Agent * -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Agent <span style="color:#e53935;">*</span></label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>Marwa Abou EL Saoud</option>
+                <option>Zamzam Walid Abdelraouf</option>
+                <option>Tamer El said</option>
+                <option>Ahmed Arif</option>
+                <option>Omniya Abd Rabo Ibrahim</option>
+                <option>Amr Mohamed Ashraf</option>
+                <option>Unassigned</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 15. Product -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Product</label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>--</option>
+                <option>Teva Range Hood</option>
+                <option>Home Appliances</option>
+                <option>Electronics</option>
+                <option>Mobile & Tablets</option>
+                <option>Laptops & Computers</option>
+                <option>Accessories</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 16. Call ID -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Call ID</label>
+            <input type="text" class="prop-input-text" placeholder="" value="">
+          </div>
+
+          <!-- 17. Reason for exception/On Hold: -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Reason for exception/On Hold:</label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>--</option>
+                <option>Awaiting Customer Response</option>
+                <option>Pending Internal Review</option>
+                <option>Vendor Escalation</option>
+                <option>Store Verification</option>
+                <option>Courier Delay</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 18. Created By -->
+          <div class="prop-field-group">
+            <label class="prop-field-label">Created By</label>
+            <div class="prop-select-wrapper">
+              <select class="prop-select">
+                <option selected>--</option>
+                <option>Zamzam Walid Abdelraouf</option>
+                <option>Marwa Abou EL Saoud</option>
+                <option>Tamer El said</option>
+                <option>Jahaber Sadiq</option>
+                <option>System</option>
+              </select>
+              <svg class="select-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="properties-footer">
+          <button class="btn-update-props" id="btnUpdateProps" disabled>Update</button>
+        </div>
+      </section>
+
+      <!-- COLUMN 3: RIGHT PANEL -->
+      <section class="right-info-column">
+        <div class="right-panel-top-nav">
+          <div class="activities-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Activities</span>
+          </div>
+
+          <div class="right-nav-controls">
+            <span>|</span>
+            <span style="cursor: pointer;">&lt;</span>
+            <span style="cursor: pointer;">&gt;</span>
+            <span style="cursor: pointer;">...</span>
+            <span style="cursor: pointer;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <line x1="15" y1="3" x2="15" y2="21"></line>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Accordion 1: Contact info | Edit -->
+        <div class="info-accordion-section">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#50667a" stroke-width="1.8">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span>Contact info <span style="color:#cfd7df;">|</span> <span class="edit-link-blue">Edit</span></span>
+            </div>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 5L5 1L9 5" stroke="#708291" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </div>
+
+          <div class="accordion-body">
+            <div class="contact-profile-row">
+              <div class="user-avatar-sm-purple">+</div>
+              <span class="phone-bold-blue">+201033095271</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <span class="contact-field-label">Work Phone</span>
+              <span style="font-size: 12px; color: #12344d;">+201033095271</span>
+            </div>
+
+            <a href="#" class="view-more-link">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              <span>View more info</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Accordion 2: Recent timeline (From User Screenshots) -->
+        <div class="info-accordion-section">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#50667a" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>Recent timeline</span>
+            </div>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 5L5 1L9 5" stroke="#708291" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </div>
+
+          <div class="accordion-body">
+            <!-- 1. Outbound ZIWO Call -->
+            <div class="timeline-item-card">
+              <div class="timeline-phone-circle">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#50667a" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 2px;">
+                <span class="timeline-title">Outbound ZIWO Call: +201033095271</span>
+                <span style="font-size: 11.5px; color: #708291;">#955742</span>
+                <span style="font-size: 11px; color: #8fa0b0;">9 Nov 2026, 06:05 PM</span>
+                <span style="font-size: 11px; color: #10b981; font-weight: 600;">Status: Open</span>
+              </div>
+            </div>
+
+            <!-- 2. Inbound ZIWO Call -->
+            <div class="timeline-item-card" style="margin-top: 10px;">
+              <div class="timeline-phone-circle">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#50667a" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 2px;">
+                <span class="timeline-title">Inbound ZIWO Call: +201033095271</span>
+                <span style="font-size: 11.5px; color: #708291;">#955723</span>
+                <span style="font-size: 11px; color: #8fa0b0;">9 Nov 2026, 05:44 PM</span>
+                <span style="font-size: 11px; color: #64748b;">Status: Closed</span>
+              </div>
+            </div>
+
+            <!-- 3. Inbound ZIWO Call -->
+            <div class="timeline-item-card" style="margin-top: 10px;">
+              <div class="timeline-phone-circle">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#50667a" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 2px;">
+                <span class="timeline-title">Inbound ZIWO Call: +201033095271</span>
+                <span style="font-size: 11.5px; color: #708291;">#955206</span>
+                <span style="font-size: 11px; color: #8fa0b0;">8 Nov 2026, 08:21 PM</span>
+                <span style="font-size: 11px; color: #64748b;">Status: Closed</span>
+              </div>
+            </div>
+
+            <!-- 4. Conversation with Sara -->
+            <div class="timeline-item-card" style="margin-top: 10px;">
+              <div class="timeline-phone-circle" style="background: #e0f2fe; color: #0284c7;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 2px;">
+                <span class="timeline-title">Conversation with Sara</span>
+                <span style="font-size: 11.5px; color: #708291;">#955108</span>
+                <span style="font-size: 11px; color: #8fa0b0;">8 Nov 2026, 05:38 PM</span>
+                <span style="font-size: 11px; color: #64748b;">Status: Closed</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 12px; display: flex; align-items: center; gap: 6px;">
+              <span style="color: #1871e8; font-size: 14px; font-weight: bold; line-height: 1;">...</span>
+              <a href="javascript:void(0)" class="view-more-link">View all activity</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordions 3-6: Parent Child, Time logs, To-do, CTI Widget -->
+        <div class="info-accordion-section">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#50667a" stroke-width="1.8">
+                <rect x="9" y="3" width="6" height="6"></rect>
+                <rect x="3" y="15" width="6" height="6"></rect>
+                <rect x="15" y="15" width="6" height="6"></rect>
+                <path d="M12 9v3m-6 3v-3h12v3"></path>
+              </svg>
+              <span>Parent Child</span>
+            </div>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.5" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="info-accordion-section">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#50667a" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 14 14"></polyline>
+              </svg>
+              <span>Time logs</span>
+            </div>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.5" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="info-accordion-section">
+          <div class="accordion-header">
+            <div class="accordion-header-left">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#50667a" stroke-width="1.8">
+                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+              </svg>
+              <span>To-do</span>
+            </div>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.5" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Accordion 6: CTI Widget (Interactive with Payment Receipt) -->
+        <div class="info-accordion-section cti-widget-section" id="ctiAccordionSection">
+          <div class="accordion-header" onclick="toggleCtiWidget()" title="Click to toggle CTI Widget">
+            <div class="accordion-header-left">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#50667a" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                <path d="M2 12h20"></path>
+              </svg>
+              <span>CTI Widget</span>
+            </div>
+            <svg class="cti-chevron" id="ctiChevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 1L5 5L9 1" stroke="#708291" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </div>
+
+          <!-- CTI Widget Body / Receipt -->
+          <div class="cti-widget-body" id="ctiWidgetBody">
+            <!-- Search Header Row -->
+            <div class="cti-search-header-row">
+              <span class="cti-search-label">Search by:</span>
+              <button type="button" class="btn-view-360" title="View 360 customer profile">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                <span>View 360</span>
+              </button>
+            </div>
+
+            <!-- Search Mode Dropdown -->
+            <div class="cti-input-group">
+              <div class="cti-select-wrapper">
+                <select class="cti-select">
+                  <option selected>Email/Phone Number</option>
+                  <option>Order Number</option>
+                  <option>Customer ID</option>
+                </select>
+                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" class="cti-select-arrows">
+                  <path d="M4 1L1 4H7L4 1Z" fill="#708291" />
+                  <path d="M4 11L1 8H7L4 11Z" fill="#708291" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Phone / Search Input -->
+            <div class="cti-input-group" style="margin-top: 6px;">
+              <input type="text" class="cti-phone-input" id="ctiSearchInput" value="+201033095271"
+                placeholder="Enter phone or email...">
+            </div>
+
+            <!-- Search Button -->
+            <button type="button" class="btn-cti-search" id="btnCtiSearch" onclick="runCtiSearch()">Search</button>
+
+            <!-- Customer Details & Order Information Card -->
+            <div class="cti-customer-card" id="ctiCustomerCard">
+              <div class="cti-customer-name-row">
+                <div class="cti-name-box">
+                  <span class="cti-label-bold">Name:</span>
+                  <span class="cti-val-name">ساره فتحى</span>
+                </div>
+                <a href="javascript:void(0)" class="cti-link-orders" onclick="showToast('Loading all orders for ساره فتحى...')">All Orders</a>
+              </div>
+
+              <div class="cti-info-line">
+                <span class="cti-label-bold">Customer since:</span>
+                <span class="cti-val">3 months</span>
+              </div>
+
+              <div class="cti-info-line">
+                <span class="cti-label-bold">Latest order:</span>
+                <span class="cti-val-order" title="Order #SIEG103110826046">#SIEG1031108260...</span>
+              </div>
+
+              <div class="cti-info-line">
+                <span class="cti-label-bold">Purchase date:</span>
+                <span class="cti-val">2026-08-11</span>
+              </div>
+
+              <div class="cti-info-line">
+                <span class="cti-label-bold">Serial Number:</span>
+                <span class="cti-val">NA</span>
+              </div>
+
+              <!-- Store & Payment Status Badges -->
+              <div class="cti-badges-row">
+                <span class="cti-badge-store">Store</span>
+                <span class="cti-badge-paid">Paid</span>
+              </div>
+
+              <!-- Order Receipt Table -->
+              <div class="cti-receipt-table-wrapper">
+                <table class="cti-receipt-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 52%;">OrderItem</th>
+                      <th style="width: 18%; text-align: center;">Quantity</th>
+                      <th style="width: 30%; text-align: right;">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="order-item-desc">
+                        <div>Teva</div>
+                        <div>DK9621</div>
+                        <div>Built In</div>
+                        <div>Hood</div>
+                        <div>90cm</div>
+                        <div>Black</div>
+                      </td>
+                      <td class="order-item-qty">1</td>
+                      <td class="order-item-amount">
+                        <div class="amount-curr">EGP</div>
+                        <div class="amount-val">5921.74</div>
+                      </td>
+                    </tr>
+                    <tr class="item-divider-row">
+                      <td colspan="3">
+                        <hr class="receipt-divider">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="order-item-desc">
+                        <div>Delivery</div>
+                        <div>Charge</div>
+                        <div>Cairo-Giza</div>
+                      </td>
+                      <td class="order-item-qty">1</td>
+                      <td class="order-item-amount">
+                        <div class="amount-curr">EGP</div>
+                        <div class="amount-val">340.01</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr class="receipt-total-row">
+                      <td colspan="2" style="font-weight: 700; color: #12344d; padding-top: 8px;">Total:</td>
+                      <td style="text-align: right; font-weight: 700; color: #0f7b3e; padding-top: 8px;">EGP 6,261.75</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAR RIGHT SLIM DOCK TOOLBAR -->
+      <aside class="rightmost-dock-bar">
+        <div class="dock-icon-btn" title="Expand"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg></div>
+        <div class="dock-icon-btn" title="User Details"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.8">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg></div>
+        <div class="dock-icon-btn" title="Integrations"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.8">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg></div>
+        <div class="dock-icon-btn" title="Marketplace"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.8">
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+            </path>
+          </svg></div>
+        <div class="dock-icon-btn" title="Sidebar View"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+          </svg></div>
+      </aside>
+
+    </main>
+  </div>
+
+  <!-- FRESHDESK MINT FLOATING ACTION BUTTON WITH ORANGE BADGE -->
+  <div class="freshdesk-float-widget" title="Freshworks Support Assistant">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12" stroke="#ffffff"
+        stroke-width="2.2" stroke-linecap="round" />
+      <circle cx="12" cy="12" r="3.5" fill="#ffffff" />
+      <path d="M12 5V8.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+      <path d="M17 12H20.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+    </svg>
+    <div class="widget-orange-dot"></div>
+  </div>
+
+  <script>
+    // Play button interactive toggle
+    let isPlaying = false;
+    function togglePlayAudio(btn) {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>`;
+      } else {
+        btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
+      }
+    }
+    window.togglePlayAudio = togglePlayAudio;
+
+    // Toggle + New Menu Dropdown
+    function toggleNewMenu(e) {
+      if (e) {
+        e.stopPropagation();
+      }
+      const popup = document.getElementById('newMenuPopup');
+      if (popup) {
+        popup.classList.toggle('show');
+      }
+    }
+    window.toggleNewMenu = toggleNewMenu;
+
+    // Close popups on click outside
+    document.addEventListener('click', function (e) {
+      const popup = document.getElementById('newMenuPopup');
+      if (popup && popup.classList.contains('show')) {
+        if (!e.target.closest('.new-btn-container')) {
+          popup.classList.remove('show');
+        }
+      }
+    });
+
+    // --- TICKET PROPERTIES & CONVERSATION MESSAGING ENGINE (953214) ---
+    const TICKET_ID = '953214';
+    const btnUpdateProps = document.getElementById('btnUpdateProps');
+    const propsBody = document.querySelector('.properties-form-body');
+    const toastSuccess = document.getElementById('toastSuccess');
+    const replyTextarea = document.getElementById('replyTextarea');
+    const btnSendReply = document.getElementById('btnSendReply');
+    const replyTabs = document.querySelectorAll('.reply-tab-btn');
+    const conversationBody = document.querySelector('.conversation-body');
+    const replySectionRow = document.getElementById('replySectionRow');
+    let propertiesChanged = false;
+    let currentReplyType = 'note';
+
+    function showToast(message) {
+      if (!toastSuccess) return;
+      const toastSpan = toastSuccess.querySelector('span');
+      if (toastSpan) toastSpan.innerText = message;
+      toastSuccess.classList.add('show');
+      setTimeout(() => {
+        toastSuccess.classList.remove('show');
+      }, 2600);
+    }
+
+    function markPropertiesChanged() {
+      propertiesChanged = true;
+      if (btnUpdateProps) {
+        btnUpdateProps.classList.add('active');
+        btnUpdateProps.removeAttribute('disabled');
+        btnUpdateProps.style.cursor = 'pointer';
+        btnUpdateProps.style.opacity = '1';
+        btnUpdateProps.style.background = '#1871e8';
+      }
+    }
+
+    // Listen for changes in any property field
+    if (propsBody) {
+      propsBody.addEventListener('change', function (e) {
+        markPropertiesChanged();
+      });
+      propsBody.addEventListener('input', function (e) {
+        if (e.target.matches('input, textarea, select')) {
+          markPropertiesChanged();
+        }
+      });
+    }
+
+    // Tag management
+    const tagInput = document.querySelector('.tag-input-bare');
+    if (tagInput) {
+      tagInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && this.value.trim() !== '') {
+          e.preventDefault();
+          const tagContainer = document.querySelector('.tags-container-box');
+          const chip = document.createElement('span');
+          chip.className = 'tag-chip';
+          chip.innerHTML = `<span>${this.value.trim()}</span><span style="cursor: pointer; font-size: 10px; margin-left: 4px;" onclick="removeTagChip(this)">✕</span>`;
+          tagContainer.insertBefore(chip, this);
+          this.value = '';
+          markPropertiesChanged();
+        }
+      });
+    }
+
+    window.removeTagChip = function (btn) {
+      const chip = btn.closest('.tag-chip');
+      if (chip) {
+        chip.remove();
+        markPropertiesChanged();
+      }
+    };
+
+    // Save ticket properties to localStorage
+    function saveTicketProperties() {
+      const data = {};
+      document.querySelectorAll('.properties-form-body .prop-field-group').forEach(group => {
+        const labelEl = group.querySelector('.prop-field-label');
+        if (!labelEl) return;
+        const label = labelEl.innerText.replace('*', '').replace(':', '').trim();
+        const select = group.querySelector('.prop-select');
+        const input = group.querySelector('.prop-input-text:not(textarea)');
+        const textarea = group.querySelector('textarea');
+        const tagChips = group.querySelectorAll('.tag-chip span:first-child');
+
+        if (select) {
+          data[label] = select.value;
+        } else if (textarea) {
+          data[label] = textarea.value;
+        } else if (input) {
+          data[label] = input.value;
+        } else if (tagChips.length > 0) {
+          data[label] = Array.from(tagChips).map(c => c.innerText.trim());
+        }
+      });
+
+      try {
+        localStorage.setItem('sharaf_props_v3_' + TICKET_ID, JSON.stringify(data));
+      } catch (err) {
+        console.warn('localStorage save failed:', err);
+      }
+
+      // Update UI Status if present
+      if (data['Status']) {
+        const slaOpenSpan = document.querySelector('.sla-open-row span');
+        if (slaOpenSpan) slaOpenSpan.innerText = data['Status'];
+      }
+
+      return data;
+    }
+
+    // Load ticket properties from localStorage
+    function loadTicketProperties() {
+      try {
+        const raw = localStorage.getItem('sharaf_props_v3_' + TICKET_ID);
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        document.querySelectorAll('.properties-form-body .prop-field-group').forEach(group => {
+          const labelEl = group.querySelector('.prop-field-label');
+          if (!labelEl) return;
+          const label = labelEl.innerText.replace('*', '').replace(':', '').trim();
+          if (data[label] !== undefined) {
+            const select = group.querySelector('.prop-select');
+            const input = group.querySelector('.prop-input-text:not(textarea)');
+            const textarea = group.querySelector('textarea');
+            if (select) {
+              select.value = data[label];
+              const parentWrapper = select.closest('.prop-select-wrapper, .fd-select-wrapper');
+              if (parentWrapper && parentWrapper.updateCustomValue) {
+                parentWrapper.updateCustomValue(data[label]);
+              }
+            } else if (textarea) {
+              textarea.value = data[label];
+            } else if (input) {
+              input.value = data[label];
+            }
+          }
+        });
+
+        if (data['Status']) {
+          const slaOpenSpan = document.querySelector('.sla-open-row span');
+          if (slaOpenSpan) slaOpenSpan.innerText = data['Status'];
+        }
+      } catch (err) {
+        console.warn('localStorage load failed:', err);
+      }
+    }
+
+    // Handle Update Button Click
+    if (btnUpdateProps) {
+      btnUpdateProps.addEventListener('click', function () {
+        if (!propertiesChanged) return;
+        const originalText = this.innerText;
+        this.innerText = 'Updating...';
+        this.disabled = true;
+        this.classList.remove('active');
+        this.style.background = '#84a8f3';
+        this.style.cursor = 'not-allowed';
+        this.style.opacity = '0.7';
+
+        setTimeout(() => {
+          saveTicketProperties();
+          this.innerText = originalText;
+          propertiesChanged = false;
+          showToast('Ticket properties updated successfully.');
+        }, 350);
+      });
+    }
+
+    // Reply & Note Tabs Switching
+    replyTabs.forEach(tab => {
+      tab.addEventListener('click', function () {
+        replyTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        const text = this.innerText.trim().toLowerCase();
+        if (text.includes('note')) {
+          currentReplyType = 'note';
+          if (replyTextarea) replyTextarea.placeholder = 'Type your private note here...';
+        } else if (text.includes('forward')) {
+          currentReplyType = 'forward';
+          if (replyTextarea) replyTextarea.placeholder = 'Type your forward message here...';
+        } else {
+          currentReplyType = 'reply';
+          if (replyTextarea) replyTextarea.placeholder = 'Type your response here...';
+        }
+        if (replyTextarea) replyTextarea.focus();
+      });
+    });
+
+    // Real-time reply textarea input & send button state
+    if (replyTextarea && btnSendReply) {
+      replyTextarea.addEventListener('input', function () {
+        if (this.value.trim().length > 0) {
+          btnSendReply.classList.add('active');
+          btnSendReply.removeAttribute('disabled');
+          btnSendReply.style.cursor = 'pointer';
+          btnSendReply.style.background = '#1871e8';
+          btnSendReply.style.opacity = '1';
+        } else {
+          btnSendReply.classList.remove('active');
+          btnSendReply.setAttribute('disabled', 'true');
+          btnSendReply.style.cursor = 'not-allowed';
+          btnSendReply.style.background = '#84a8f3';
+          btnSendReply.style.opacity = '0.7';
+        }
+      });
+
+      // Shortcut: Ctrl+Enter or Cmd+Enter to send
+      replyTextarea.addEventListener('keydown', function (e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          sendTicketMessage();
+        }
+      });
+
+      btnSendReply.addEventListener('click', function (e) {
+        e.preventDefault();
+        sendTicketMessage();
+      });
+    }
+
+    function createMessageHtml(type, content, timeStr) {
+      if (type === 'note') {
+        return `
+          <div class="private-note-card" style="animation: fadeInMsg 0.25s ease;">
+            <div class="user-avatar-cyan">Y</div>
+            <div class="note-content-col">
+              <div class="note-author-header">
+                <strong>You</strong> added a private note • ${timeStr}
+              </div>
+              <div class="message-text-simple" style="white-space: pre-wrap; line-height: 1.5;">${content}</div>
+            </div>
+          </div>
+        `;
+      } else if (type === 'forward') {
+        return `
+          <div class="private-note-card" style="background: #f0f7ff; border-color: #cde2fe; animation: fadeInMsg 0.25s ease;">
+            <div class="user-avatar-cyan">Y</div>
+            <div class="note-content-col">
+              <div class="note-author-header">
+                <strong>You</strong> forwarded a message • ${timeStr}
+              </div>
+              <div class="message-text-simple" style="white-space: pre-wrap; line-height: 1.5;">${content}</div>
+            </div>
+          </div>
+        `;
+      } else {
+        return `
+          <div class="message-card-white" style="animation: fadeInMsg 0.25s ease;">
+            <div class="user-avatar-cyan">Y</div>
+            <div class="message-content-col">
+              <div class="message-author-header">
+                <div class="author-name-meta">
+                  <strong>You</strong> replied • ${timeStr}
+                </div>
+              </div>
+              <div class="message-text-simple" style="white-space: pre-wrap; line-height: 1.5;">${content}</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function sendTicketMessage() {
+      if (!replyTextarea) return;
+      const content = replyTextarea.value.trim();
+      if (!content) {
+        replyTextarea.focus();
+        return;
+      }
+
+      const safeContent = content
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+      const now = new Date();
+      const timeStr = 'Just now (' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ')';
+      const cardHtml = createMessageHtml(currentReplyType, safeContent, timeStr);
+
+      if (replySectionRow && conversationBody) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = cardHtml.trim();
+        conversationBody.insertBefore(tempDiv.firstElementChild, replySectionRow);
+      }
+
+      // Persist to localStorage
+      try {
+        let msgs = JSON.parse(localStorage.getItem('sharaf_msgs_' + TICKET_ID) || '[]');
+        msgs.push({ type: currentReplyType, content: safeContent, time: timeStr });
+        localStorage.setItem('sharaf_msgs_' + TICKET_ID, JSON.stringify(msgs));
+      } catch (err) {
+        console.warn('Failed saving message to localStorage:', err);
+      }
+
+      // Reset textarea and send button
+      replyTextarea.value = '';
+      if (btnSendReply) {
+        btnSendReply.classList.remove('active');
+        btnSendReply.setAttribute('disabled', 'true');
+        btnSendReply.style.cursor = 'not-allowed';
+        btnSendReply.style.background = '#84a8f3';
+        btnSendReply.style.opacity = '0.7';
+      }
+
+      if (replySectionRow) {
+        replySectionRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      const toastText = currentReplyType === 'note' ? 'Private note added successfully.' :
+        currentReplyType === 'forward' ? 'Forward message sent successfully.' : 'Response sent successfully.';
+      showToast(toastText);
+    }
+
+    function loadTicketMessages() {
+      try {
+        const msgs = JSON.parse(localStorage.getItem('sharaf_msgs_' + TICKET_ID) || '[]');
+        if (!msgs.length || !conversationBody || !replySectionRow) return;
+        msgs.forEach(m => {
+          const cardHtml = createMessageHtml(m.type, m.content, m.time);
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = cardHtml.trim();
+          conversationBody.insertBefore(tempDiv.firstElementChild, replySectionRow);
+        });
+      } catch (err) {
+        console.warn('Failed loading messages from localStorage:', err);
+      }
+    }
+
+    // Load persisted properties and messages on startup
+    loadTicketProperties();
+    loadTicketMessages();
+
+    window.focusReplyBox = function (type) {
+      if (!replyTextarea) return;
+      replyTabs.forEach(t => {
+        const txt = t.innerText.trim().toLowerCase();
+        if (txt.includes(type)) {
+          t.click();
+        }
+      });
+      replyTextarea.focus();
+      if (replySectionRow) {
+        replySectionRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    };
+
+    window.createNewItem = function (type) {
+      const popup = document.getElementById('newMenuPopup');
+      if (popup) popup.classList.remove('show');
+      showToast(`New ${type} creation dialog`);
+    };
+
+    window.openNewTicketModal = function () {
+      window.location.href = 'new-ticket.html';
+    };
+
+
+    // --- CUSTOM FRESHDESK SEARCHABLE DROPDOWN SYSTEM (MATCHING SCREENSHOT) ---
+    function initCustomDropdowns() {
+      const wrappers = document.querySelectorAll('.prop-select-wrapper, .fd-select-wrapper');
+      wrappers.forEach(wrapper => {
+        const select = wrapper.querySelector('select');
+        if (!select || wrapper.classList.contains('custom-dropdown-init')) return;
+        wrapper.classList.add('custom-dropdown', 'custom-dropdown-init');
+
+        const isPriority = wrapper.classList.contains('priority-wrapper');
+        const oldChevron = wrapper.querySelector('.select-chevron, .fd-chevron-icon');
+        if (oldChevron) oldChevron.style.display = 'none';
+
+        select.style.display = 'none';
+
+        const currentSelected = select.options[select.selectedIndex] || select.options[0];
+        const currentVal = currentSelected ? currentSelected.text : '--';
+
+        const getPriorityColor = (v) => v === 'Low' ? '#22c55e' : v === 'Medium' ? '#3b82f6' : v === 'High' ? '#f59e0b' : '#ef4444';
+
+        // Trigger container box
+        const box = document.createElement('div');
+        box.className = 'custom-dropdown-box';
+
+        let priorityDot = null;
+        if (isPriority) {
+          priorityDot = document.createElement('span');
+          priorityDot.className = 'priority-indicator-box';
+          priorityDot.style.cssText = `display:inline-block; width:8px; height:8px; background:${getPriorityColor(currentVal)}; border-radius:2px; margin-left:10px; margin-right:-2px; flex-shrink:0;`;
+          box.appendChild(priorityDot);
+        }
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'custom-dropdown-input';
+        input.value = currentVal;
+        input.autocomplete = 'off';
+        input.spellcheck = false;
+
+        const chevron = document.createElement('div');
+        chevron.className = 'custom-dropdown-chevron';
+        chevron.innerHTML = `
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        `;
+
+        box.appendChild(input);
+        box.appendChild(chevron);
+
+        // Menu
+        const menu = document.createElement('div');
+        menu.className = 'custom-dropdown-menu';
+
+        function buildOptions(filterText = '') {
+          menu.innerHTML = '';
+          const q = filterText.toLowerCase().trim();
+          let count = 0;
+
+          Array.from(select.options).forEach((opt, idx) => {
+            if (q && !opt.text.toLowerCase().includes(q)) return;
+            count++;
+
+            const optDiv = document.createElement('div');
+            optDiv.className = 'custom-dropdown-option' + (select.selectedIndex === idx ? ' selected' : '');
+            
+            if (isPriority) {
+              optDiv.innerHTML = `<span style="display:inline-block;width:8px;height:8px;background:${getPriorityColor(opt.text)};border-radius:2px;margin-right:8px;vertical-align:middle;"></span>${opt.text}`;
+            } else {
+              optDiv.innerText = opt.text;
+            }
+            optDiv.dataset.value = opt.value || opt.text;
+            optDiv.dataset.index = idx;
+
+            optDiv.addEventListener('mousedown', function (e) {
+              e.preventDefault();
+              select.selectedIndex = idx;
+              input.value = opt.text;
+              if (priorityDot) {
+                priorityDot.style.background = getPriorityColor(opt.text);
+              }
+
+              menu.querySelectorAll('.custom-dropdown-option').forEach(o => o.classList.remove('selected'));
+              this.classList.add('selected');
+
+              wrapper.classList.remove('open');
+
+              // Dispatch change event to notify properties engine
+              const event = new Event('change', { bubbles: true });
+              select.dispatchEvent(event);
+            });
+
+            menu.appendChild(optDiv);
+          });
+
+          if (count === 0) {
+            const noRes = document.createElement('div');
+            noRes.className = 'custom-dropdown-option';
+            noRes.style.color = '#8898aa';
+            noRes.style.cursor = 'default';
+            noRes.innerText = 'No matches found';
+            menu.appendChild(noRes);
+          }
+        }
+
+        buildOptions();
+
+        // Focus & Click: open and highlight text like in user screenshot
+        function openDropdown() {
+          document.querySelectorAll('.custom-dropdown.open').forEach(d => {
+            if (d !== wrapper) d.classList.remove('open');
+          });
+
+          buildOptions('');
+          wrapper.classList.add('open');
+
+          // Highlight text in blue as shown in screenshot
+          setTimeout(() => {
+            input.select();
+            const selectedOpt = menu.querySelector('.custom-dropdown-option.selected');
+            if (selectedOpt) selectedOpt.scrollIntoView({ block: 'nearest' });
+          }, 10);
+        }
+
+        input.addEventListener('focus', function () {
+          openDropdown();
+        });
+
+        box.addEventListener('click', function (e) {
+          if (e.target !== input) {
+            if (wrapper.classList.contains('open')) {
+              wrapper.classList.remove('open');
+            } else {
+              input.focus();
+              openDropdown();
+            }
+          }
+        });
+
+        // Typing in input filters the options
+        input.addEventListener('input', function () {
+          if (!wrapper.classList.contains('open')) {
+            wrapper.classList.add('open');
+          }
+          buildOptions(this.value);
+        });
+
+        // Keyboard navigation
+        input.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const opts = Array.from(menu.querySelectorAll('.custom-dropdown-option:not([style*="default"])'));
+            if (!opts.length) return;
+            let curIdx = opts.findIndex(o => o.classList.contains('selected'));
+            if (curIdx < opts.length - 1) {
+              opts.forEach(o => o.classList.remove('selected'));
+              curIdx++;
+              opts[curIdx].classList.add('selected');
+              opts[curIdx].scrollIntoView({ block: 'nearest' });
+            }
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const opts = Array.from(menu.querySelectorAll('.custom-dropdown-option:not([style*="default"])'));
+            if (!opts.length) return;
+            let curIdx = opts.findIndex(o => o.classList.contains('selected'));
+            if (curIdx > 0) {
+              opts.forEach(o => o.classList.remove('selected'));
+              curIdx--;
+              opts[curIdx].classList.add('selected');
+              opts[curIdx].scrollIntoView({ block: 'nearest' });
+            }
+          } else if (e.key === 'Enter') {
+            e.preventDefault();
+            const selectedOpt = menu.querySelector('.custom-dropdown-option.selected');
+            if (selectedOpt && selectedOpt.dataset.index !== undefined) {
+              const idx = parseInt(selectedOpt.dataset.index);
+              select.selectedIndex = idx;
+              input.value = select.options[idx].text;
+              wrapper.classList.remove('open');
+              const event = new Event('change', { bubbles: true });
+              select.dispatchEvent(event);
+            }
+          } else if (e.key === 'Escape') {
+            wrapper.classList.remove('open');
+            input.value = select.options[select.selectedIndex] ? select.options[select.selectedIndex].text : '--';
+          }
+        });
+
+        input.addEventListener('blur', function () {
+          setTimeout(() => {
+            if (!wrapper.contains(document.activeElement)) {
+              wrapper.classList.remove('open');
+              input.value = select.options[select.selectedIndex] ? select.options[select.selectedIndex].text : '--';
+            }
+          }, 150);
+        });
+
+        wrapper.appendChild(box);
+        wrapper.appendChild(menu);
+
+        wrapper.updateCustomValue = function (val) {
+          for (let i = 0; i < select.options.length; i++) {
+            if (select.options[i].value === val || select.options[i].text === val) {
+              select.selectedIndex = i;
+              input.value = select.options[i].text;
+              if (priorityDot) {
+                priorityDot.style.background = getPriorityColor(select.options[i].text);
+              }
+              buildOptions('');
+              break;
+            }
+          }
+        };
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.custom-dropdown')) {
+        document.querySelectorAll('.custom-dropdown.open').forEach(d => d.classList.remove('open'));
+      }
+    });
+
+    // Toggle CTI Widget Accordion
+    function toggleCtiWidget() {
+      const body = document.getElementById('ctiWidgetBody');
+      const chevron = document.getElementById('ctiChevron');
+      if (body) {
+        body.classList.toggle('open');
+      }
+      if (chevron) {
+        chevron.classList.toggle('rotated');
+      }
+    }
+    window.toggleCtiWidget = toggleCtiWidget;
+
+    // Run CTI Search
+    function runCtiSearch() {
+      const input = document.getElementById('ctiSearchInput');
+      const val = input ? input.value.trim() : '';
+      showToast(`Searching customer orders for ${val || 'caller'}...`);
+      const card = document.getElementById('ctiCustomerCard');
+      if (card) {
+        card.style.animation = 'none';
+        card.offsetHeight; // force reflow
+        card.style.animation = 'fadeInCti 0.25s ease';
+      }
+    }
+    window.runCtiSearch = runCtiSearch;
+
+    initCustomDropdowns();
+  </script>
+  <!-- FRESHDESK PROPERTIES UPDATED TOAST -->
+  <div id="toastSuccess" class="freshdesk-toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span>Properties updated successfully.</span>
+  </div>
+</body>
+
+</html>
